@@ -342,14 +342,13 @@ body.door-open .nav { display: none; }
 
 /* ===== HERO ===== */
 .hero {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 92px 32px 48px;
+  padding: 92px 32px 96px;
   position: relative;
   overflow: visible;
-  gap: 80px;
+  gap: 56px;
 }
 .hero__brand {
   position: sticky;
@@ -421,7 +420,7 @@ body.door-open .nav { display: none; }
 .hero__meta span:first-child { color: var(--brick); }
 
 @media (max-width: 720px) {
-  .hero { padding: 72px 18px 36px; gap: 48px; }
+  .hero { padding: 72px 18px 60px; gap: 36px; }
   .hero__brand { position: static; }
   .hero__name { font-size: clamp(72px, 22vw, 200px); letter-spacing: -0.02em; }
   .hero__sub { grid-template-columns: 1fr; gap: 24px; padding-top: 22px; }
@@ -1122,14 +1121,12 @@ body.door-open .nav { display: none; }
 <!-- ===== HERO ===== -->
 <header class="hero" id="top">
   <div class="hero__brand">
-    <h1 class="hero__name">
-      <span class="split-line"><span>DANNY</span></span><span class="apos">'</span><span class="split-line delay-1"><span>S</span></span>
-    </h1>
+    <h1 class="hero__name">DANNY<span class="apos">'</span>S</h1>
     <p class="hero__submark">Automotive Repair</p>
   </div>
   <div class="hero__sub">
     <p class="hero__lede fade-up">
-      On the corner of San&nbsp;Antonio since 2003. The sign on the door has been there since 1948. <em>Same answer when you ask: is this honest?</em>
+      On the corner of San&nbsp;Antonio since 2003. The sign on the door has been there since 1948. <em>Twenty-three years of one man, one lift, and the same honest answer every time.</em>
     </p>
     <div class="hero__meta fade-up">
       <span>594 S SAN ANTONIO AVE</span>

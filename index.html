@@ -274,38 +274,70 @@ body.door-open .nav { display: none; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 32px;
+  padding: 14px 24px;
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  mix-blend-mode: difference;
+  background: rgba(10, 8, 7, 0.78);
+  backdrop-filter: blur(12px) saturate(110%);
+  -webkit-backdrop-filter: blur(12px) saturate(110%);
+  border-bottom: 1px solid rgba(241, 236, 223, 0.08);
+  transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1), background 250ms ease;
+  white-space: nowrap;
+}
+.nav.is-hidden { transform: translateY(-110%); }
+.nav.is-top {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: transparent;
 }
 .nav__mark {
   font-family: var(--display);
-  font-size: 22px;
+  font-size: 20px;
   letter-spacing: 0.04em;
   color: var(--bone);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  white-space: nowrap;
+  overflow: hidden;
 }
-.nav__mark::after {
-  content: '·';
-  margin: 0 8px;
-  color: var(--brick);
+.nav__mark::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--brick);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+  flex-shrink: 0;
+  transform: translateY(-3px);
 }
-.nav__mark span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; }
+.nav__mark .meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--bone-deep);
+  opacity: 0.6;
+  font-weight: 400;
+}
 .nav__cta {
   border: 1px solid var(--bone);
-  padding: 10px 18px;
+  padding: 9px 16px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
   transition: background 200ms ease, color 200ms ease;
+  flex-shrink: 0;
 }
 .nav__cta:hover { background: var(--bone); color: var(--ink); }
 
 @media (max-width: 720px) {
-  .nav { padding: 14px 16px; }
-  .nav__mark { font-size: 16px; }
-  .nav__mark span { display: none; }
-  .nav__mark::after { display: none; }
-  .nav__cta { padding: 7px 10px; font-size: 10px; letter-spacing: 0.06em; }
+  .nav { padding: 11px 14px; }
+  .nav__mark { font-size: 16px; gap: 8px; }
+  .nav__mark .meta { display: none; }
+  .nav__cta { padding: 7px 12px; font-size: 10px; letter-spacing: 0.06em; }
 }
 
 /* ===== HERO ===== */
@@ -1060,9 +1092,9 @@ body.door-open .nav { display: none; }
   </div>
 </div>
 
-<nav class="nav">
-  <a href="#top" class="nav__mark">DANNY'S<span>POMONA · SINCE 1948</span></a>
-  <a href="tel:+19096223785" class="nav__cta">Call (909) 622-3785</a>
+<nav class="nav is-top" id="nav">
+  <a href="#top" class="nav__mark">Danny's<span class="meta">Pomona · Est. 1948</span></a>
+  <a href="tel:+19096223785" class="nav__cta">Call shop</a>
 </nav>
 
 <!-- ===== HERO ===== -->
@@ -1344,6 +1376,38 @@ body.door-open .nav { display: none; }
   }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
 
   document.querySelectorAll('.fade-up, .split-line').forEach(el => io.observe(el));
+
+  // ===== Nav: hide on scroll down, reveal on scroll up =====
+  const nav = document.getElementById('nav');
+  if (nav) {
+    let lastY = window.scrollY;
+    let ticking = false;
+    const update = () => {
+      const y = window.scrollY;
+      const delta = y - lastY;
+      // top of page → no background, no hide
+      if (y < 60) {
+        nav.classList.add('is-top');
+        nav.classList.remove('is-hidden');
+      } else {
+        nav.classList.remove('is-top');
+        // scrolling DOWN past threshold → hide
+        if (delta > 6 && y > 240) {
+          nav.classList.add('is-hidden');
+        } else if (delta < -6) {
+          nav.classList.remove('is-hidden');
+        }
+      }
+      lastY = y;
+      ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
 
   // ===== Phone underline trigger =====
   const phoneNum = document.getElementById('phone-num');

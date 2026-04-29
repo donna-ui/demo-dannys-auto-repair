@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danny's Automotive Repair — On the corner of San Antonio since 2003.</title>
+<meta name="description" content="One man. One corner. Same answer since 2003. Honest auto repair in Pomona — engines, transmissions, brakes, A/C, electrical, alignment, ignition interlock. (909) 622-3785.">
+<meta property="og:title" content="Danny's Automotive Repair — Pomona">
+<meta property="og:description" content="On the corner of San Antonio since 2003. The sign has been there since 1948. Same answer when you ask: is this honest?">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ===== PALETTE & TOKENS ===== */
+:root {
+  --ink: #0A0807;
+  --bone: #F1ECDF;
+  --bone-deep: #DDD6C4;
+  --brick: #A8281C;
+  --brick-deep: #7A1812;
+  --turquoise: #5B7A78;
+  --paper: #EDE4CD;
+  --rule: rgba(241, 236, 223, 0.18);
+
+  --display: 'Anton', 'Arial Black', sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+  --mono: 'DM Mono', 'Courier New', monospace;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { background: var(--ink); scroll-behavior: smooth; }
+body {
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(15px, 1.05vw, 18px);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--brick); color: var(--bone); }
+
+a { color: inherit; text-decoration: none; }
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 32px;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  mix-blend-mode: difference;
+}
+.nav__mark {
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: var(--bone);
+}
+.nav__mark::after {
+  content: '·';
+  margin: 0 8px;
+  color: var(--brick);
+}
+.nav__mark span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; }
+.nav__cta {
+  border: 1px solid var(--bone);
+  padding: 10px 18px;
+  transition: background 200ms ease, color 200ms ease;
+}
+.nav__cta:hover { background: var(--bone); color: var(--ink); }
+
+@media (max-width: 720px) {
+  .nav { padding: 16px 18px; }
+  .nav__mark { font-size: 18px; }
+  .nav__mark span { display: none; }
+  .nav__cta { padding: 8px 12px; font-size: 11px; }
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 120px 32px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.hero__name {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(96px, 38vw, 560px);
+  line-height: 0.78;
+  letter-spacing: -0.025em;
+  color: var(--bone);
+  margin-left: -0.04em;
+  position: relative;
+}
+.hero__name .apos {
+  color: var(--brick);
+  display: inline-block;
+  transform: translateY(-0.02em);
+}
+.hero__sub {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 56px;
+  align-items: end;
+  border-top: 1px solid var(--rule);
+  padding-top: 28px;
+}
+.hero__lede {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(18px, 1.6vw, 26px);
+  line-height: 1.35;
+  max-width: 56ch;
+}
+.hero__lede em {
+  font-style: italic;
+  color: var(--brick);
+}
+.hero__meta {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+.hero__meta span:first-child { color: var(--brick); }
+
+@media (max-width: 720px) {
+  .hero { padding: 110px 20px 36px; }
+  .hero__sub { grid-template-columns: 1fr; gap: 24px; }
+  .hero__meta { text-align: left; align-items: flex-start; }
+}
+
+/* ===== SECTION FRAME ===== */
+.sec {
+  padding: 140px 32px;
+  border-top: 1px solid var(--rule);
+  position: relative;
+}
+.sec__num {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--brick);
+  margin-bottom: 20px;
+  display: inline-block;
+}
+.sec__title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(48px, 9vw, 168px);
+  line-height: 0.85;
+  letter-spacing: -0.018em;
+  color: var(--bone);
+  text-transform: uppercase;
+  max-width: 18ch;
+}
+.sec__title em {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--brick);
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 720px) {
+  .sec { padding: 80px 20px; }
+}
+
+/* ===== SECTION 01 — TWO DATES ===== */
+.dates {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  margin-top: 80px;
+  border-top: 1px solid var(--bone);
+}
+.dates__cell {
+  padding: 32px 24px 32px 0;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.dates__cell:last-child { border-right: none; }
+.dates__year {
+  font-family: var(--display);
+  font-size: clamp(64px, 9vw, 144px);
+  line-height: 1;
+  color: var(--bone);
+  letter-spacing: -0.02em;
+}
+.dates__year.is-now { color: var(--brick); }
+.dates__label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bone-deep);
+  opacity: 0.7;
+}
+.dates__body {
+  font-family: var(--serif);
+  font-size: clamp(16px, 1.1vw, 19px);
+  line-height: 1.5;
+  max-width: 32ch;
+  color: var(--bone);
+}
+
+@media (max-width: 880px) {
+  .dates { grid-template-columns: 1fr; }
+  .dates__cell { border-right: none; border-bottom: 1px solid var(--rule); padding: 28px 0; }
+  .dates__cell:last-child { border-bottom: none; }
+}
+
+/* ===== SECTION 02 — ONE MAN ===== */
+.oneman {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  margin-top: 60px;
+  align-items: start;
+}
+.oneman__body p {
+  font-family: var(--serif);
+  font-size: clamp(18px, 1.4vw, 23px);
+  line-height: 1.5;
+  margin-bottom: 24px;
+  max-width: 48ch;
+}
+.oneman__body p:first-child::first-letter {
+  font-family: var(--display);
+  font-size: 4.4em;
+  line-height: 0.8;
+  float: left;
+  margin: 0.06em 0.08em -0.1em -0.02em;
+  color: var(--brick);
+}
+.oneman__pull {
+  font-family: var(--display);
+  font-size: clamp(36px, 4vw, 64px);
+  line-height: 0.92;
+  color: var(--bone);
+  letter-spacing: -0.01em;
+  border-left: 4px solid var(--brick);
+  padding-left: 28px;
+  text-transform: uppercase;
+  position: sticky;
+  top: 120px;
+}
+.oneman__pull span { color: var(--brick); }
+
+@media (max-width: 880px) {
+  .oneman { grid-template-columns: 1fr; gap: 40px; }
+  .oneman__pull { position: static; font-size: 36px; padding-left: 18px; }
+}
+
+/* ===== ATMOSPHERIC BREAK — IMAGE PLATE ===== */
+.plate {
+  position: relative;
+  width: 100%;
+  height: 78vh;
+  min-height: 480px;
+  overflow: hidden;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.plate img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  filter: grayscale(100%) contrast(1.08) brightness(0.7);
+  transform: scale(1.05);
+}
+.plate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10,8,7,0.55) 0%, rgba(10,8,7,0.25) 35%, rgba(10,8,7,0.55) 100%),
+    linear-gradient(135deg, rgba(168,40,28,0.18), rgba(91,122,120,0.12));
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+.plate::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(10,8,7,0.2) 0px, rgba(10,8,7,0.2) 1px, transparent 1px, transparent 3px);
+  z-index: 2;
+  opacity: 0.4;
+  pointer-events: none;
+}
+.plate__caption {
+  position: absolute;
+  z-index: 3;
+  left: 32px;
+  bottom: 32px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bone);
+  line-height: 1.7;
+  max-width: 32ch;
+}
+.plate__caption strong { color: var(--brick); display: block; font-size: 18px; letter-spacing: 0.04em; margin-bottom: 8px; font-weight: 500; }
+.plate__caption .rule {
+  width: 40px;
+  height: 2px;
+  background: var(--brick);
+  margin-top: 14px;
+}
+
+@media (max-width: 720px) {
+  .plate { height: 60vh; min-height: 360px; }
+  .plate__caption { left: 20px; bottom: 20px; font-size: 11px; }
+}
+
+/* ===== SECTION 03 — THE INVOICE (SIGNATURE MOMENT) ===== */
+.invoice-wrap {
+  margin-top: 60px;
+  position: relative;
+}
+.invoice {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 48px 56px 56px;
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.35), 0 8px 0 #c4ba9c;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0, transparent 28px, rgba(168, 40, 28, 0.04) 28px, rgba(168, 40, 28, 0.04) 29px);
+  transform: rotate(-0.6deg);
+}
+.invoice::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(10,8,7,0.3);
+  pointer-events: none;
+}
+.invoice__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+.invoice__brand {
+  font-family: var(--display);
+  font-size: 32px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+.invoice__brand small {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  margin-top: 4px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.invoice__no {
+  text-align: right;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+.invoice__no strong { display: block; font-size: 16px; letter-spacing: 0.02em; }
+
+.invoice__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  border-bottom: 1px dashed rgba(10,8,7,0.4);
+  padding: 8px 0;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+.invoice__row.is-in { opacity: 1; transform: translateY(0); }
+.invoice__row strong { font-weight: 500; }
+.invoice__row.note {
+  text-transform: none;
+  letter-spacing: 0;
+  font-style: normal;
+  font-family: var(--serif);
+  font-size: 14px;
+  border-bottom: none;
+  padding-top: 16px;
+  display: block;
+  color: rgba(10,8,7,0.85);
+}
+.invoice__row.note::before {
+  content: 'NOTES — ';
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--brick);
+}
+.invoice__total {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  font-family: var(--display);
+  font-size: 28px;
+  letter-spacing: 0.02em;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 2px solid var(--ink);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 500ms ease 200ms, transform 500ms ease 200ms;
+}
+.invoice__total.is-in { opacity: 1; transform: translateY(0); }
+.invoice__total strong { color: var(--brick); }
+
+.invoice__stamp {
+  position: absolute;
+  right: 32px;
+  bottom: 24px;
+  transform: rotate(-12deg);
+  border: 3px solid var(--brick);
+  color: var(--brick);
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  padding: 8px 16px;
+  opacity: 0;
+  transition: opacity 600ms ease 1000ms, transform 800ms ease 1000ms;
+}
+.invoice__stamp.is-in { opacity: 0.92; transform: rotate(-8deg) scale(1); }
+
+.invoice-after {
+  margin: 80px auto 0;
+  max-width: 920px;
+  text-align: center;
+}
+.invoice-after__line1 {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bone-deep);
+  opacity: 0.7;
+  margin-bottom: 12px;
+}
+.invoice-after__line2 {
+  font-family: var(--display);
+  font-size: clamp(56px, 8vw, 144px);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  color: var(--bone);
+}
+.invoice-after__line2 strike {
+  color: var(--bone-deep);
+  text-decoration-color: var(--brick);
+  text-decoration-thickness: 6px;
+  opacity: 0.6;
+}
+.invoice-after__line3 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 1.6vw, 26px);
+  margin-top: 28px;
+  color: var(--bone);
+  max-width: 50ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.4;
+}
+
+@media (max-width: 720px) {
+  .invoice { padding: 28px 24px 36px; transform: rotate(-0.4deg); }
+  .invoice__brand { font-size: 22px; }
+  .invoice__row { font-size: 11px; }
+  .invoice__total { font-size: 22px; }
+  .invoice__stamp { font-size: 16px; right: 16px; bottom: 14px; }
+}
+
+/* ===== SECTION 04 — REVIEWS ===== */
+.reviews {
+  margin-top: 60px;
+}
+.review {
+  padding: 52px 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 48px;
+  align-items: end;
+}
+.review:last-child { border-bottom: none; }
+.review__quote {
+  font-family: var(--display);
+  font-size: clamp(36px, 6vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.018em;
+  color: var(--bone);
+  text-transform: uppercase;
+}
+.review__quote em {
+  color: var(--brick);
+  font-style: normal;
+}
+.review__attr {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bone-deep);
+  text-align: right;
+  line-height: 1.7;
+  opacity: 0.8;
+}
+.review__attr strong { color: var(--brick); display: block; margin-bottom: 4px; font-weight: 500; }
+
+@media (max-width: 720px) {
+  .review { grid-template-columns: 1fr; gap: 14px; }
+  .review__attr { text-align: left; }
+}
+
+/* ===== SECTION 05 — SERVICES ===== */
+.services {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--bone);
+}
+.service {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--rule);
+  padding-right: 32px;
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  position: relative;
+  cursor: default;
+  transition: padding-left 350ms cubic-bezier(0.2, 0.8, 0.2, 1), color 300ms ease;
+}
+.service:nth-child(odd) { padding-right: 32px; border-right: 1px solid var(--rule); padding-left: 0; }
+.service:nth-child(even) { padding-left: 32px; padding-right: 0; }
+.service:hover { padding-left: 18px; }
+.service:nth-child(even):hover { padding-left: 50px; }
+.service::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--brick);
+  transition: width 350ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(-50%);
+}
+.service:nth-child(even)::before { left: 32px; }
+.service:hover::before { width: 12px; }
+.service__num {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--brick);
+  flex-shrink: 0;
+}
+.service__name {
+  font-family: var(--display);
+  font-size: clamp(28px, 3.4vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.005em;
+  color: var(--bone);
+  text-transform: uppercase;
+  flex: 1;
+}
+.service__detail {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--bone-deep);
+  opacity: 0.7;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+@media (max-width: 720px) {
+  .services { grid-template-columns: 1fr; }
+  .service, .service:nth-child(odd), .service:nth-child(even) {
+    padding: 22px 0;
+    border-right: none;
+  }
+  .service__name { font-size: 32px; }
+  .service__detail { display: none; }
+}
+
+/* ===== SECTION 06 — THE CORNER ===== */
+.corner {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+}
+.corner__addr {
+  font-family: var(--display);
+  font-size: clamp(48px, 6.4vw, 110px);
+  line-height: 0.92;
+  letter-spacing: -0.018em;
+  color: var(--bone);
+  text-transform: uppercase;
+}
+.corner__addr span { color: var(--brick); }
+.corner__hours {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 2;
+  border-top: 1px solid var(--bone);
+  padding-top: 24px;
+  align-self: end;
+}
+.corner__hours strong { color: var(--brick); font-weight: 500; }
+.corner__hours .row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  border-bottom: 1px solid var(--rule);
+  padding: 6px 0;
+}
+.corner__directions {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 24px;
+  color: var(--brick);
+  border-bottom: 1px solid var(--brick);
+  padding-bottom: 4px;
+  display: inline-block;
+}
+
+@media (max-width: 880px) {
+  .corner { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* ===== SECTION 07 — THE PHONE (CLOSING) ===== */
+.phone {
+  padding: 180px 32px 60px;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+  position: relative;
+}
+.phone__label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brick);
+  margin-bottom: 32px;
+}
+.phone__number {
+  font-family: var(--display);
+  font-size: clamp(64px, 17vw, 280px);
+  line-height: 0.88;
+  letter-spacing: -0.022em;
+  color: var(--bone);
+  display: inline-block;
+  position: relative;
+}
+.phone__number::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -18px;
+  width: 0;
+  height: 6px;
+  background: var(--brick);
+  transform: translateX(-50%);
+  transition: width 1200ms cubic-bezier(0.2, 0.8, 0.2, 1) 200ms;
+}
+.phone__number.is-in::after { width: 60%; }
+.phone__sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 1.6vw, 26px);
+  margin-top: 56px;
+  color: var(--bone);
+  max-width: 50ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.4;
+}
+.phone__cta {
+  display: inline-block;
+  margin-top: 48px;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1px solid var(--bone);
+  padding: 18px 36px;
+  transition: background 200ms ease, color 200ms ease;
+}
+.phone__cta:hover { background: var(--brick); border-color: var(--brick); color: var(--bone); }
+
+@media (max-width: 720px) {
+  .phone { padding: 100px 20px 40px; }
+}
+
+/* ===== FOOTER ===== */
+.foot {
+  border-top: 1px solid var(--rule);
+  padding: 48px 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bone-deep);
+  opacity: 0.7;
+  align-items: center;
+}
+.foot__brand {
+  font-family: var(--display);
+  font-size: 18px;
+  color: var(--bone);
+  letter-spacing: 0.04em;
+  opacity: 1;
+}
+.foot__brand span { color: var(--brick); }
+.foot__center { text-align: center; }
+.foot__right { text-align: right; }
+.foot__right a { color: var(--brick); }
+
+@media (max-width: 720px) {
+  .foot { grid-template-columns: 1fr; text-align: center; gap: 12px; }
+  .foot__right, .foot__center { text-align: center; }
+}
+
+/* ===== ENTRANCE ANIMATIONS ===== */
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 700ms ease, transform 700ms ease; }
+.fade-up.is-in { opacity: 1; transform: translateY(0); }
+
+.split-line {
+  display: inline-block;
+  overflow: hidden;
+}
+.split-line span {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.split-line.is-in span { transform: translateY(0); }
+.split-line.delay-1 span { transition-delay: 80ms; }
+.split-line.delay-2 span { transition-delay: 160ms; }
+.split-line.delay-3 span { transition-delay: 240ms; }
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .split-line span { transform: none; }
+  .fade-up { opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#top" class="nav__mark">DANNY'S<span>POMONA · SINCE 1948</span></a>
+  <a href="tel:+19096223785" class="nav__cta">Call (909) 622-3785</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="top">
+  <h1 class="hero__name">
+    <span class="split-line"><span>DANNY</span></span><span class="apos">'</span><span class="split-line delay-1"><span>S</span></span>
+  </h1>
+  <div class="hero__sub">
+    <p class="hero__lede fade-up">
+      On the corner of San&nbsp;Antonio since 2003. The sign on the door has been there since 1948. <em>Same answer when you ask: is this honest?</em>
+    </p>
+    <div class="hero__meta fade-up">
+      <span>594 S SAN ANTONIO AVE</span>
+      <span>POMONA · CALIFORNIA</span>
+      <span>91766</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== 01 · TWO DATES ===== -->
+<section class="sec">
+  <span class="sec__num fade-up">01 — THE CORNER</span>
+  <h2 class="sec__title fade-up">One corner.<br><em>Two dates that matter.</em></h2>
+  <div class="dates">
+    <div class="dates__cell fade-up">
+      <span class="dates__label">YEAR ONE</span>
+      <div class="dates__year">1948</div>
+      <p class="dates__body">The building goes up. Pomona is still a citrus town. The sign reads <strong>DANNY'S</strong>. It will outlast everything across the street.</p>
+    </div>
+    <div class="dates__cell fade-up">
+      <span class="dates__label">THE HANDOFF</span>
+      <div class="dates__year">2003</div>
+      <p class="dates__body">Danny takes the keys. He keeps the sign. He keeps the lift. He answers the phone himself. He still does.</p>
+    </div>
+    <div class="dates__cell fade-up">
+      <span class="dates__label">RIGHT NOW</span>
+      <div class="dates__year is-now">2026</div>
+      <p class="dates__body">Same corner. Same sign. Same man. Twenty-three years of one answer to the only question that matters at a body shop.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 02 · ONE MAN ===== -->
+<section class="sec">
+  <span class="sec__num fade-up">02 — THE SHOP</span>
+  <h2 class="sec__title fade-up">One man.<br><em>Every car.</em></h2>
+  <div class="oneman">
+    <div class="oneman__body fade-up">
+      <p>There is no front desk. There is no service writer. There is no one to upsell you while Danny is out back doing the actual work. There is Danny, the lift, and the car you brought in.</p>
+      <p>You'll get the diagnosis from the man who fixes it — because there isn't anyone else to ask. You'll hear the price from the man who sets it. You'll get the keys back from the man who turned the wrench.</p>
+      <p>Twenty-three years on this corner means people stop in just to ask him a question. He answers it. Even if it costs him the job.</p>
+    </div>
+    <blockquote class="oneman__pull fade-up">
+      No team.<br>No dispatcher.<br>No "we'll call you back."<br><span>Just Danny.</span>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ===== ATMOSPHERIC BREAK ===== -->
+<div class="plate" aria-hidden="true">
+  <img
+    src="https://images.pexels.com/photos/8985714/pexels-photo-8985714.jpeg?auto=compress&cs=tinysrgb&w=2000"
+    alt=""
+    loading="lazy"
+    decoding="async">
+  <div class="plate__caption">
+    <strong>The lift's been here longer than your kids.</strong>
+    Every car that comes off it goes back home with the same answer.
+    <div class="rule"></div>
+  </div>
+</div>
+
+<!-- ===== 03 · THE INVOICE (SIGNATURE) ===== -->
+<section class="sec" id="invoice-sec">
+  <span class="sec__num fade-up">03 — WHY HE STILL HAS CUSTOMERS FROM 2011</span>
+  <h2 class="sec__title fade-up">The quote from<br>the chain shop. <em>Read it.</em></h2>
+  <div class="invoice-wrap">
+    <article class="invoice" id="invoice">
+      <header class="invoice__head">
+        <div class="invoice__brand">
+          DANNY'S
+          <small>Automotive Repair · Pomona</small>
+        </div>
+        <div class="invoice__no">
+          INVOICE
+          <strong>NO. 11-0418</strong>
+          18 APR 2024
+        </div>
+      </header>
+
+      <div class="invoice__row" data-row="1">
+        <span>1996 HONDA CIVIC · OWNER M. RODRIGUEZ</span>
+        <strong></strong>
+      </div>
+      <div class="invoice__row" data-row="2">
+        <span>TIMING BELT — REPLACEMENT</span>
+        <strong>$310.00</strong>
+      </div>
+      <div class="invoice__row" data-row="3">
+        <span>WATER PUMP — INSPECTED, OK</span>
+        <strong>$0.00</strong>
+      </div>
+      <div class="invoice__row" data-row="4">
+        <span>OIL CHANGE — COURTESY</span>
+        <strong>$0.00</strong>
+      </div>
+      <div class="invoice__row" data-row="5">
+        <span>LABOR — INCLUDED</span>
+        <strong>—</strong>
+      </div>
+      <div class="invoice__row" data-row="6">
+        <span>PARTS WARRANTY — 12 MO / 12K MI</span>
+        <strong>—</strong>
+      </div>
+      <div class="invoice__total" data-row="7">
+        <span>TOTAL</span>
+        <strong>$310.00</strong>
+      </div>
+      <p class="invoice__row note" data-row="8">
+        Saw the A/C hose weeping a little. Not urgent — wait on it. Check back in 30 days when the heat picks up.
+      </p>
+
+      <span class="invoice__stamp" data-row="9">PAID · THANKS</span>
+    </article>
+
+    <div class="invoice-after">
+      <p class="invoice-after__line1 fade-up">— What the chain shop quoted her —</p>
+      <p class="invoice-after__line2 fade-up"><strike>$1,840</strike></p>
+      <p class="invoice-after__line3 fade-up">Maria has been bringing her Civic to Danny since 2011. Her son's truck. Her nephew's Camry. Now her grandson's first car. <em>One corner. One man. One answer.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04 · REVIEWS ===== -->
+<section class="sec">
+  <span class="sec__num fade-up">04 — WHAT CUSTOMERS ACTUALLY SAY</span>
+  <h2 class="sec__title fade-up">Word of mouth.<br><em>The real review.</em></h2>
+  <div class="reviews">
+    <article class="review">
+      <p class="review__quote fade-up">"He was <em>the sweetest.</em> Walked me through everything without trying to sell me anything else."</p>
+      <div class="review__attr fade-up"><strong>BIRDEYE · 5★</strong>FIRST-TIME CUSTOMER<br>2024</div>
+    </article>
+    <article class="review">
+      <p class="review__quote fade-up">"<em>Honest. Affordable. Reliable.</em> I've been a customer for fifteen years and I'm not going anywhere else."</p>
+      <div class="review__attr fade-up"><strong>BIRDEYE · 5★</strong>15-YEAR CUSTOMER<br>2023</div>
+    </article>
+    <article class="review">
+      <p class="review__quote fade-up">"Fast service. <em>No upsells.</em> He told me what was wrong and what could wait. That's it."</p>
+      <div class="review__attr fade-up"><strong>BIRDEYE · 5★</strong>RETURNING CUSTOMER<br>2024</div>
+    </article>
+  </div>
+</section>
+
+<!-- ===== 05 · SERVICES ===== -->
+<section class="sec">
+  <span class="sec__num fade-up">05 — WHAT HE FIXES</span>
+  <h2 class="sec__title fade-up">If it has<br>four wheels.<br><em>He'll look at it.</em></h2>
+  <div class="services">
+    <div class="service fade-up"><span class="service__num">5.01</span><span class="service__name">Engines</span><span class="service__detail">diagnosis to overhaul</span></div>
+    <div class="service fade-up"><span class="service__num">5.02</span><span class="service__name">Transmissions</span><span class="service__detail">repair &amp; rebuild</span></div>
+    <div class="service fade-up"><span class="service__num">5.03</span><span class="service__name">Brakes</span><span class="service__detail">pads, rotors, lines</span></div>
+    <div class="service fade-up"><span class="service__num">5.04</span><span class="service__name">Suspension</span><span class="service__detail">front &amp; rear</span></div>
+    <div class="service fade-up"><span class="service__num">5.05</span><span class="service__name">Electrical</span><span class="service__detail">starting, charging, lighting</span></div>
+    <div class="service fade-up"><span class="service__num">5.06</span><span class="service__name">Air Conditioning</span><span class="service__detail">recharge &amp; repair</span></div>
+    <div class="service fade-up"><span class="service__num">5.07</span><span class="service__name">Alignment</span><span class="service__detail">four-wheel</span></div>
+    <div class="service fade-up"><span class="service__num">5.08</span><span class="service__name">Tune-Ups</span><span class="service__detail">factory schedule or by ear</span></div>
+    <div class="service fade-up"><span class="service__num">5.09</span><span class="service__name">Towing</span><span class="service__detail">when you're stuck</span></div>
+    <div class="service fade-up"><span class="service__num">5.10</span><span class="service__name">Ignition Interlock</span><span class="service__detail">LifeSafer authorized installer</span></div>
+  </div>
+</section>
+
+<!-- ===== 06 · THE CORNER ===== -->
+<section class="sec">
+  <span class="sec__num fade-up">06 — FIND THE SIGN</span>
+  <h2 class="sec__title fade-up">Pull up to<br>the corner.<br><em>You can't miss it.</em></h2>
+  <div class="corner">
+    <div>
+      <h3 class="corner__addr fade-up">594 S<br><span>San Antonio</span><br>Ave.</h3>
+      <a href="https://www.google.com/maps/place/594+S+San+Antonio+Ave,+Pomona,+CA+91766" target="_blank" rel="noopener" class="corner__directions fade-up">→ Open in Google Maps</a>
+    </div>
+    <div class="corner__hours fade-up">
+      <div class="row"><span>Monday</span><strong>8:00a — 6:00p</strong></div>
+      <div class="row"><span>Tue — Friday</span><strong>7:45a — 6:00p</strong></div>
+      <div class="row"><span>Saturday</span><strong>8:00a — 5:00p</strong></div>
+      <div class="row"><span>Sunday</span><span style="opacity:0.5">— closed —</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 07 · THE PHONE (CLOSING) ===== -->
+<section class="phone">
+  <p class="phone__label fade-up">SAME LINE. SAME MAN. SINCE 2003.</p>
+  <a href="tel:+19096223785" class="phone__number fade-up" id="phone-num">(909) 622-3785</a>
+  <p class="phone__sub fade-up"><em>Pick up the phone. Danny will. He always does.</em></p>
+  <a href="tel:+19096223785" class="phone__cta fade-up">Call the shop</a>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="foot">
+  <div class="foot__brand">DANNY'S<span>·</span>POMONA</div>
+  <div class="foot__center">© 2026 · LICENSED · INSURED</div>
+  <div class="foot__right">SITE BY <a href="https://bizguru.io" target="_blank" rel="noopener">BIZGURU.IO</a></div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": "Danny's Automotive Repair",
+  "image": "https://dannys-auto-repair.vercel.app/og.jpg",
+  "@id": "https://dannys-auto-repair.vercel.app",
+  "url": "https://dannys-auto-repair.vercel.app",
+  "telephone": "+1-909-622-3785",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "594 S San Antonio Ave",
+    "addressLocality": "Pomona",
+    "addressRegion": "CA",
+    "postalCode": "91766",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 34.05225,
+    "longitude": -117.75234
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "08:00", "closes": "18:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"], "opens": "07:45", "closes": "18:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "17:00" }
+  ],
+  "founder": "Danny",
+  "foundingDate": "1948",
+  "areaServed": [
+    { "@type": "City", "name": "Pomona" },
+    { "@type": "City", "name": "Diamond Bar" },
+    { "@type": "City", "name": "Walnut" },
+    { "@type": "City", "name": "Chino" },
+    { "@type": "City", "name": "Claremont" },
+    { "@type": "City", "name": "Montclair" }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.7",
+    "reviewCount": "18"
+  }
+}
+</script>
+
+<script>
+(function () {
+  // ===== Reveal on scroll =====
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+
+  document.querySelectorAll('.fade-up, .split-line').forEach(el => io.observe(el));
+
+  // ===== Phone underline trigger =====
+  const phoneNum = document.getElementById('phone-num');
+  if (phoneNum) {
+    const ip = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) phoneNum.classList.add('is-in'); });
+    }, { threshold: 0.4 });
+    ip.observe(phoneNum);
+  }
+
+  // ===== Invoice progressive reveal (scroll-driven) =====
+  const invoice = document.getElementById('invoice');
+  if (invoice) {
+    const rows = Array.from(invoice.querySelectorAll('[data-row]'))
+      .sort((a, b) => Number(a.dataset.row) - Number(b.dataset.row));
+    const total = rows.length;
+
+    const onScroll = () => {
+      const rect = invoice.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // Progress: 0 when invoice top hits middle of screen, 1 when bottom passes
+      const start = vh * 0.85;
+      const end = vh * 0.15;
+      const span = start - end;
+      const prog = Math.max(0, Math.min(1, (start - rect.top) / span));
+      const reveal = Math.floor(prog * total * 1.05);
+      rows.forEach((row, i) => {
+        if (i < reveal) row.classList.add('is-in');
+      });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -351,18 +351,18 @@ body.door-open .nav { display: none; }
   gap: 56px;
   isolation: isolate;
 }
-/* ambient atmospheric blobs */
+/* ambient atmospheric blobs — bigger, more visible */
 .hero::before {
   content: '';
   position: absolute;
-  inset: -15%;
+  inset: -20%;
   z-index: 0;
   background:
-    radial-gradient(ellipse 50% 40% at 18% 78%, rgba(168, 40, 28, 0.22) 0%, transparent 65%),
-    radial-gradient(ellipse 45% 35% at 84% 18%, rgba(91, 122, 120, 0.18) 0%, transparent 65%),
-    radial-gradient(ellipse 30% 25% at 60% 50%, rgba(168, 40, 28, 0.08) 0%, transparent 70%);
-  filter: blur(40px);
-  animation: heroAmbient 22s ease-in-out infinite alternate;
+    radial-gradient(ellipse 55% 45% at 18% 78%, rgba(168, 40, 28, 0.42) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 84% 18%, rgba(91, 122, 120, 0.32) 0%, transparent 60%),
+    radial-gradient(ellipse 35% 30% at 60% 50%, rgba(168, 40, 28, 0.14) 0%, transparent 70%);
+  filter: blur(28px);
+  animation: heroAmbient 14s ease-in-out infinite alternate;
   pointer-events: none;
 }
 .hero::after {
@@ -370,18 +370,48 @@ body.door-open .nav { display: none; }
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: repeating-linear-gradient(0deg, rgba(241,236,223,0.018) 0px, rgba(241,236,223,0.018) 1px, transparent 1px, transparent 4px);
+  background-image: repeating-linear-gradient(0deg, rgba(241,236,223,0.022) 0px, rgba(241,236,223,0.022) 1px, transparent 1px, transparent 4px);
   pointer-events: none;
 }
 @keyframes heroAmbient {
-  0% { transform: rotate(0deg) scale(1); opacity: 0.9; }
-  100% { transform: rotate(6deg) scale(1.08); opacity: 1; }
+  0% { transform: rotate(0deg) scale(1); opacity: 0.85; }
+  100% { transform: rotate(10deg) scale(1.12); opacity: 1; }
 }
 
-/* year reel — timeline scrolling behind wordmark */
+/* horizontal sweep beam — scanner light passes across hero on a loop */
+.hero__sweep {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero__sweep::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -30%;
+  width: 30%;
+  height: 120%;
+  background: linear-gradient(90deg, transparent 0%, rgba(168, 40, 28, 0) 30%, rgba(216, 72, 46, 0.22) 50%, rgba(168, 40, 28, 0) 70%, transparent 100%);
+  filter: blur(24px);
+  animation: sweepBeam 7.2s ease-in-out infinite;
+  transform: skewX(-12deg);
+}
+@keyframes sweepBeam {
+  0% { left: -40%; opacity: 0; }
+  10% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { left: 130%; opacity: 0; }
+}
+
+/* year reel — bigger, more visible, faster */
 .hero__years {
   position: absolute;
-  top: 38%;
+  top: 42%;
   left: 0;
   right: 0;
   transform: translateY(-50%);
@@ -390,20 +420,20 @@ body.door-open .nav { display: none; }
   white-space: nowrap;
   pointer-events: none;
   font-family: var(--mono);
-  font-size: clamp(48px, 8vw, 120px);
-  color: rgba(241, 236, 223, 0.05);
+  font-size: clamp(56px, 9vw, 140px);
+  color: rgba(241, 236, 223, 0.16);
   letter-spacing: 0.04em;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1;
   user-select: none;
   mix-blend-mode: screen;
 }
 .hero__years-inner {
   display: inline-block;
-  animation: yearScroll 110s linear infinite;
+  animation: yearScroll 50s linear infinite;
   padding-left: 100vw;
 }
-.hero__years em { color: rgba(168, 40, 28, 0.18); font-style: normal; }
+.hero__years em { color: rgba(216, 72, 46, 0.6); font-style: normal; }
 @keyframes yearScroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -435,19 +465,23 @@ body.door-open .nav { display: none; }
 .hero__name .apos {
   color: var(--brick);
   display: inline-block;
-  transform: translateY(-0.02em);
-  animation: aposPulse 3.6s ease-in-out infinite;
+  transform-origin: 50% 60%;
+  animation: aposPulse 2.4s ease-in-out infinite;
+  will-change: transform, text-shadow;
 }
 @keyframes aposPulse {
   0%, 100% {
+    transform: translateY(-0.02em) scale(1);
     text-shadow: 0 0 0 transparent;
     color: var(--brick);
   }
   50% {
+    transform: translateY(-0.04em) scale(1.08);
     text-shadow:
-      0 0 36px rgba(168, 40, 28, 0.55),
-      0 0 14px rgba(168, 40, 28, 0.4);
-    color: #C8362A;
+      0 0 60px rgba(216, 72, 46, 0.85),
+      0 0 24px rgba(216, 72, 46, 0.6),
+      0 0 8px rgba(216, 72, 46, 0.5);
+    color: #E04A38;
   }
 }
 .hero__submark {
@@ -509,6 +543,60 @@ body.door-open .nav { display: none; }
   .hero__sub { grid-template-columns: 1fr; gap: 24px; padding-top: 22px; }
   .hero__meta { text-align: left; align-items: flex-start; }
   .hero__lede { font-size: 17px; }
+}
+
+/* ===== SECTION — PAPER MODIFIER (visual break: cream ground, ink type) ===== */
+.sec--paper {
+  background: var(--paper);
+  color: var(--ink);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+.sec--paper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(10,8,7,0.022) 0, rgba(10,8,7,0.022) 1px, transparent 1px, transparent 4px),
+    repeating-linear-gradient(90deg, rgba(10,8,7,0.018) 0, rgba(10,8,7,0.018) 1px, transparent 1px, transparent 6px);
+  pointer-events: none;
+  z-index: 0;
+}
+.sec--paper > * { position: relative; z-index: 1; }
+.sec--paper .sec__num { color: var(--brick); }
+.sec--paper .sec__title { color: var(--ink); }
+.sec--paper .sec__title em { color: var(--brick); }
+.sec--paper .services { border-top-color: var(--ink); }
+.sec--paper .service { border-bottom-color: rgba(10, 8, 7, 0.22); }
+.sec--paper .service__num { color: var(--brick); }
+.sec--paper .service__name { color: var(--ink); }
+.sec--paper .service__detail { color: rgba(10, 8, 7, 0.55); opacity: 1; }
+.sec--paper .service:nth-child(odd) { border-right-color: rgba(10, 8, 7, 0.22); }
+.sec--paper .service::before { background: var(--brick); }
+.sec--paper .service:hover { color: var(--ink); }
+
+/* paper-section corner stamp — adds a real catalog-page feel */
+.sec--paper .paper-stamp {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brick);
+  border: 1.5px solid var(--brick);
+  padding: 8px 14px;
+  transform: rotate(2deg);
+  z-index: 2;
+  line-height: 1.5;
+}
+.sec--paper .paper-stamp strong { display: block; font-size: 12px; letter-spacing: 0.06em; font-family: var(--display); font-weight: 400; }
+
+@media (max-width: 720px) {
+  .sec--paper .paper-stamp { top: 18px; right: 18px; font-size: 9px; padding: 6px 10px; }
 }
 
 /* ===== SECTION FRAME ===== */
@@ -1203,6 +1291,7 @@ body.door-open .nav { display: none; }
 
 <!-- ===== HERO ===== -->
 <header class="hero" id="top">
+  <div class="hero__sweep" aria-hidden="true"></div>
   <div class="hero__years" aria-hidden="true">
     <div class="hero__years-inner">
       1948 · 1955 · 1962 · 1969 · 1976 · 1983 · 1990 · 1997 · <em>2003</em> · 2010 · 2017 · <em>2026</em> · 1948 · 1955 · 1962 · 1969 · 1976 · 1983 · 1990 · 1997 · <em>2003</em> · 2010 · 2017 · <em>2026</em> ·&nbsp;
@@ -1359,7 +1448,8 @@ body.door-open .nav { display: none; }
 </section>
 
 <!-- ===== 05 · SERVICES ===== -->
-<section class="sec">
+<section class="sec sec--paper">
+  <div class="paper-stamp">PARTS &amp; LABOR<strong>EST. 1948</strong></div>
   <span class="sec__num fade-up">05 — WHAT HE FIXES</span>
   <h2 class="sec__title fade-up">If it has<br>four wheels.<br><em>He'll look at it.</em></h2>
   <div class="services">
@@ -1501,7 +1591,7 @@ body.door-open .nav { display: none; }
         const y = ((e.clientY - rect.top) / rect.height - 0.5);
         cancelAnimationFrame(frame);
         frame = requestAnimationFrame(() => {
-          name.style.transform = `perspective(1400px) rotateX(${y * -2.4}deg) rotateY(${x * 3.6}deg) translateZ(0)`;
+          name.style.transform = `perspective(1200px) rotateX(${y * -6}deg) rotateY(${x * 9}deg) translateZ(0)`;
         });
       });
       hero.addEventListener('mouseleave', () => {

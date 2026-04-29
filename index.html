@@ -32,7 +32,7 @@
 /* ===== RESET ===== */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { background: var(--ink); scroll-behavior: smooth; }
+html { background: var(--ink); scroll-behavior: smooth; overflow-x: hidden; }
 body {
   background: var(--ink);
   color: var(--bone);
@@ -43,6 +43,8 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 ::selection { background: var(--brick); color: var(--bone); }
@@ -84,10 +86,11 @@ a { color: inherit; text-decoration: none; }
 .nav__cta:hover { background: var(--bone); color: var(--ink); }
 
 @media (max-width: 720px) {
-  .nav { padding: 16px 18px; }
-  .nav__mark { font-size: 18px; }
+  .nav { padding: 14px 16px; }
+  .nav__mark { font-size: 16px; }
   .nav__mark span { display: none; }
-  .nav__cta { padding: 8px 12px; font-size: 11px; }
+  .nav__mark::after { display: none; }
+  .nav__cta { padding: 7px 10px; font-size: 10px; letter-spacing: 0.06em; }
 }
 
 /* ===== HERO ===== */
@@ -103,12 +106,13 @@ a { color: inherit; text-decoration: none; }
 .hero__name {
   font-family: var(--display);
   font-weight: 400;
-  font-size: clamp(96px, 38vw, 560px);
-  line-height: 0.78;
+  font-size: clamp(96px, 28vw, 480px);
+  line-height: 0.82;
   letter-spacing: -0.025em;
   color: var(--bone);
-  margin-left: -0.04em;
+  margin-left: -0.02em;
   position: relative;
+  white-space: nowrap;
 }
 .hero__name .apos {
   color: var(--brick);
@@ -149,9 +153,11 @@ a { color: inherit; text-decoration: none; }
 .hero__meta span:first-child { color: var(--brick); }
 
 @media (max-width: 720px) {
-  .hero { padding: 110px 20px 36px; }
-  .hero__sub { grid-template-columns: 1fr; gap: 24px; }
+  .hero { padding: 110px 18px 36px; }
+  .hero__name { font-size: clamp(72px, 22vw, 200px); letter-spacing: -0.02em; }
+  .hero__sub { grid-template-columns: 1fr; gap: 24px; padding-top: 22px; }
   .hero__meta { text-align: left; align-items: flex-start; }
+  .hero__lede { font-size: 17px; }
 }
 
 /* ===== SECTION FRAME ===== */
@@ -171,12 +177,13 @@ a { color: inherit; text-decoration: none; }
 .sec__title {
   font-family: var(--display);
   font-weight: 400;
-  font-size: clamp(48px, 9vw, 168px);
+  font-size: clamp(40px, 9vw, 168px);
   line-height: 0.85;
   letter-spacing: -0.018em;
   color: var(--bone);
   text-transform: uppercase;
   max-width: 18ch;
+  overflow-wrap: break-word;
 }
 .sec__title em {
   font-family: var(--serif);
@@ -188,7 +195,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (max-width: 720px) {
-  .sec { padding: 80px 20px; }
+  .sec { padding: 72px 18px; }
+  .sec__title { font-size: 38px; line-height: 0.95; max-width: 100%; }
+  .sec__title em { display: inline; }
 }
 
 /* ===== SECTION 01 — TWO DATES ===== */
@@ -357,7 +366,7 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--mono);
   font-size: 14px;
   line-height: 1.7;
-  max-width: 720px;
+  max-width: min(720px, 100%);
   margin: 0 auto;
   position: relative;
   box-shadow: 0 40px 80px rgba(0,0,0,0.35), 0 8px 0 #c4ba9c;
@@ -484,7 +493,7 @@ a { color: inherit; text-decoration: none; }
 }
 .invoice-after__line2 {
   font-family: var(--display);
-  font-size: clamp(56px, 8vw, 144px);
+  font-size: clamp(48px, 8vw, 144px);
   line-height: 0.92;
   letter-spacing: -0.01em;
   color: var(--bone);
@@ -508,11 +517,14 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (max-width: 720px) {
-  .invoice { padding: 28px 24px 36px; transform: rotate(-0.4deg); }
+  .invoice { padding: 24px 18px 32px; transform: rotate(-0.3deg); }
+  .invoice__head { flex-direction: column; gap: 12px; }
+  .invoice__no { text-align: left; }
   .invoice__brand { font-size: 22px; }
-  .invoice__row { font-size: 11px; }
-  .invoice__total { font-size: 22px; }
-  .invoice__stamp { font-size: 16px; right: 16px; bottom: 14px; }
+  .invoice__row { font-size: 10.5px; gap: 10px; }
+  .invoice__row.note { font-size: 13px; }
+  .invoice__total { font-size: 20px; }
+  .invoice__stamp { font-size: 14px; right: 12px; bottom: 12px; padding: 6px 10px; }
 }
 
 /* ===== SECTION 04 — REVIEWS ===== */
@@ -530,11 +542,12 @@ a { color: inherit; text-decoration: none; }
 .review:last-child { border-bottom: none; }
 .review__quote {
   font-family: var(--display);
-  font-size: clamp(36px, 6vw, 96px);
-  line-height: 0.95;
+  font-size: clamp(28px, 6vw, 96px);
+  line-height: 1;
   letter-spacing: -0.018em;
   color: var(--bone);
   text-transform: uppercase;
+  overflow-wrap: break-word;
 }
 .review__quote em {
   color: var(--brick);
@@ -553,7 +566,8 @@ a { color: inherit; text-decoration: none; }
 .review__attr strong { color: var(--brick); display: block; margin-bottom: 4px; font-weight: 500; }
 
 @media (max-width: 720px) {
-  .review { grid-template-columns: 1fr; gap: 14px; }
+  .review { grid-template-columns: 1fr; gap: 14px; padding: 36px 0; }
+  .review__quote { font-size: 28px; }
   .review__attr { text-align: left; }
 }
 
@@ -638,11 +652,12 @@ a { color: inherit; text-decoration: none; }
 }
 .corner__addr {
   font-family: var(--display);
-  font-size: clamp(48px, 6.4vw, 110px);
+  font-size: clamp(40px, 6.4vw, 110px);
   line-height: 0.92;
   letter-spacing: -0.018em;
   color: var(--bone);
   text-transform: uppercase;
+  overflow-wrap: break-word;
 }
 .corner__addr span { color: var(--brick); }
 .corner__hours {
@@ -695,12 +710,14 @@ a { color: inherit; text-decoration: none; }
 }
 .phone__number {
   font-family: var(--display);
-  font-size: clamp(64px, 17vw, 280px);
+  font-size: clamp(40px, 14vw, 280px);
   line-height: 0.88;
   letter-spacing: -0.022em;
   color: var(--bone);
   display: inline-block;
   position: relative;
+  white-space: nowrap;
+  max-width: 100%;
 }
 .phone__number::after {
   content: '';
@@ -739,7 +756,11 @@ a { color: inherit; text-decoration: none; }
 .phone__cta:hover { background: var(--brick); border-color: var(--brick); color: var(--bone); }
 
 @media (max-width: 720px) {
-  .phone { padding: 100px 20px 40px; }
+  .phone { padding: 80px 18px 36px; }
+  .phone__number { font-size: 38px; letter-spacing: -0.015em; }
+  .phone__sub { font-size: 16px; margin-top: 32px; }
+  .phone__cta { margin-top: 28px; padding: 14px 24px; font-size: 12px; }
+  .phone__label { margin-bottom: 22px; font-size: 11px; }
 }
 
 /* ===== FOOTER ===== */

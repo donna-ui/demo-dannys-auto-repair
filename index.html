@@ -673,6 +673,95 @@ img { max-width: 100%; display: block; }
   .foot__right, .foot__center { text-align: center; }
 }
 
+/* ===== INTRO — DIAGNOSTIC COUNTDOWN (auto-plays, no click) ===== */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 36px;
+  transition: opacity 700ms ease;
+  overflow: hidden;
+  padding: 32px;
+}
+.intro.is-out { opacity: 0; pointer-events: none; }
+.intro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(0deg, rgba(241,236,223,0.04) 0, rgba(241,236,223,0.04) 1px, transparent 1px, transparent 3px);
+  pointer-events: none;
+}
+.intro::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+}
+.intro__top {
+  font-family: var(--mono);
+  font-size: clamp(11px, 1.1vw, 14px);
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--bone-deep);
+  opacity: 0.7;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.intro__top span { color: var(--brick); }
+.intro__count {
+  font-family: var(--display);
+  font-size: clamp(120px, 22vw, 360px);
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  color: var(--bone);
+  position: relative;
+  z-index: 2;
+  min-width: 1ch;
+  text-align: center;
+  transition: color 200ms ease, transform 320ms cubic-bezier(0.4, 0, 0.2, 1), opacity 200ms ease;
+}
+.intro__count.flash { color: var(--brick-bright); transform: scale(1.04); }
+.intro__count.last { color: var(--brick); }
+.intro__readout {
+  font-family: var(--mono);
+  font-size: clamp(13px, 1.4vw, 18px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bone);
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  min-height: 1.4em;
+}
+.intro__readout strong { color: var(--brick); font-weight: 500; }
+.intro__bar {
+  width: clamp(140px, 22vw, 280px);
+  height: 2px;
+  background: rgba(241, 236, 223, 0.12);
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+.intro__bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--brick);
+  transform: translateX(-100%);
+  animation: introBar 2.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes introBar {
+  to { transform: translateX(0); }
+}
+body.intro-active { overflow: hidden; }
+
 /* ===== ENTRANCE ANIMATIONS ===== */
 .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 700ms ease, transform 700ms ease; }
 .fade-up.is-in { opacity: 1; transform: translateY(0); }
@@ -690,6 +779,14 @@ img { max-width: 100%; display: block; }
 </style>
 </head>
 <body>
+
+<!-- ===== INTRO COUNTDOWN ===== -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro__top">DANNY'S · POMONA · <span>DIAGNOSTIC</span></div>
+  <div class="intro__count" id="intro-count">3</div>
+  <div class="intro__bar"></div>
+  <div class="intro__readout" id="intro-readout">CALIBRATING SYSTEMS</div>
+</div>
 
 <nav class="nav is-top" id="nav">
   <a href="#top" class="nav__mark">Danny's<span class="meta">Pomona · 22 yrs</span></a>
@@ -857,6 +954,42 @@ img { max-width: 100%; display: block; }
 
 <script>
 (function () {
+  // ===== INTRO COUNTDOWN =====
+  const intro = document.getElementById('intro');
+  const introCount = document.getElementById('intro-count');
+  const introReadout = document.getElementById('intro-readout');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (intro && !reduced) {
+    document.body.classList.add('intro-active');
+    const setCount = (val, cls) => {
+      if (!introCount) return;
+      introCount.textContent = val;
+      introCount.classList.remove('flash', 'last');
+      if (cls) {
+        // force reflow so the class re-triggers the transition
+        void introCount.offsetWidth;
+        introCount.classList.add(cls);
+      }
+    };
+    const setReadout = (html) => { if (introReadout) introReadout.innerHTML = html; };
+
+    setCount('3', 'flash');
+    setTimeout(() => setReadout('CALIBRATING · 22 YEARS'), 200);
+    setTimeout(() => setCount('2', 'flash'), 700);
+    setTimeout(() => setReadout('CALIBRATING · 4.7★ REVIEWS'), 900);
+    setTimeout(() => setCount('1', 'last'), 1400);
+    setTimeout(() => setReadout('CALIBRATING · NO UPSELLS'), 1600);
+    setTimeout(() => { setCount('GO', 'flash'); setReadout('<strong>ALL SYSTEMS READY</strong>'); }, 2100);
+    setTimeout(() => {
+      intro.classList.add('is-out');
+      document.body.classList.remove('intro-active');
+    }, 2700);
+    setTimeout(() => { intro.style.display = 'none'; }, 3500);
+  } else if (intro) {
+    intro.style.display = 'none';
+  }
+
   // Fade-up reveal
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {

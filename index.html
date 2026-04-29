@@ -345,10 +345,18 @@ body.door-open .nav { display: none; }
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 120px 32px 48px;
+  justify-content: space-between;
+  padding: 156px 32px 48px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  gap: 32px;
+}
+.hero__brand {
+  position: sticky;
+  top: 100px;
+  z-index: 5;
+  align-self: flex-start;
+  padding-bottom: 8px;
 }
 .hero__name {
   font-family: var(--display);
@@ -365,6 +373,30 @@ body.door-open .nav { display: none; }
   color: var(--brick);
   display: inline-block;
   transform: translateY(-0.02em);
+}
+.hero__submark {
+  font-family: var(--display);
+  font-size: clamp(20px, 3.2vw, 48px);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bone);
+  line-height: 1;
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hero__submark::before {
+  content: '';
+  width: 56px;
+  height: 4px;
+  background: var(--brick);
+  display: inline-block;
+  flex-shrink: 0;
+}
+@media (max-width: 720px) {
+  .hero__submark { font-size: 18px; gap: 10px; margin-top: 16px; }
+  .hero__submark::before { width: 32px; height: 3px; }
 }
 .hero__sub {
   display: grid;
@@ -400,7 +432,8 @@ body.door-open .nav { display: none; }
 .hero__meta span:first-child { color: var(--brick); }
 
 @media (max-width: 720px) {
-  .hero { padding: 110px 18px 36px; }
+  .hero { padding: 130px 18px 36px; gap: 24px; }
+  .hero__brand { position: static; padding-bottom: 0; }
   .hero__name { font-size: clamp(72px, 22vw, 200px); letter-spacing: -0.02em; }
   .hero__sub { grid-template-columns: 1fr; gap: 24px; padding-top: 22px; }
   .hero__meta { text-align: left; align-items: flex-start; }
@@ -1099,9 +1132,12 @@ body.door-open .nav { display: none; }
 
 <!-- ===== HERO ===== -->
 <header class="hero" id="top">
-  <h1 class="hero__name">
-    <span class="split-line"><span>DANNY</span></span><span class="apos">'</span><span class="split-line delay-1"><span>S</span></span>
-  </h1>
+  <div class="hero__brand">
+    <h1 class="hero__name">
+      <span class="split-line"><span>DANNY</span></span><span class="apos">'</span><span class="split-line delay-1"><span>S</span></span>
+    </h1>
+    <p class="hero__submark">Automotive Repair</p>
+  </div>
   <div class="hero__sub">
     <p class="hero__lede fade-up">
       On the corner of San&nbsp;Antonio since 2003. The sign on the door has been there since 1948. <em>Same answer when you ask: is this honest?</em>

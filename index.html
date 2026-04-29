@@ -347,15 +347,76 @@ body.door-open .nav { display: none; }
   justify-content: flex-start;
   padding: 92px 32px 96px;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   gap: 56px;
+  isolation: isolate;
 }
+/* ambient atmospheric blobs */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: -15%;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 18% 78%, rgba(168, 40, 28, 0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 35% at 84% 18%, rgba(91, 122, 120, 0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 30% 25% at 60% 50%, rgba(168, 40, 28, 0.08) 0%, transparent 70%);
+  filter: blur(40px);
+  animation: heroAmbient 22s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: repeating-linear-gradient(0deg, rgba(241,236,223,0.018) 0px, rgba(241,236,223,0.018) 1px, transparent 1px, transparent 4px);
+  pointer-events: none;
+}
+@keyframes heroAmbient {
+  0% { transform: rotate(0deg) scale(1); opacity: 0.9; }
+  100% { transform: rotate(6deg) scale(1.08); opacity: 1; }
+}
+
+/* year reel — timeline scrolling behind wordmark */
+.hero__years {
+  position: absolute;
+  top: 38%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  pointer-events: none;
+  font-family: var(--mono);
+  font-size: clamp(48px, 8vw, 120px);
+  color: rgba(241, 236, 223, 0.05);
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  line-height: 1;
+  user-select: none;
+  mix-blend-mode: screen;
+}
+.hero__years-inner {
+  display: inline-block;
+  animation: yearScroll 110s linear infinite;
+  padding-left: 100vw;
+}
+.hero__years em { color: rgba(168, 40, 28, 0.18); font-style: normal; }
+@keyframes yearScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 .hero__brand {
   position: sticky;
   top: 76px;
-  z-index: 5;
+  z-index: 3;
   align-self: flex-start;
+  perspective: 1200px;
 }
+.hero__sub { position: relative; z-index: 3; }
 .hero__name {
   font-family: var(--display);
   font-weight: 400;
@@ -367,10 +428,27 @@ body.door-open .nav { display: none; }
   position: relative;
   white-space: nowrap;
 }
+.hero__name {
+  transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
 .hero__name .apos {
   color: var(--brick);
   display: inline-block;
   transform: translateY(-0.02em);
+  animation: aposPulse 3.6s ease-in-out infinite;
+}
+@keyframes aposPulse {
+  0%, 100% {
+    text-shadow: 0 0 0 transparent;
+    color: var(--brick);
+  }
+  50% {
+    text-shadow:
+      0 0 36px rgba(168, 40, 28, 0.55),
+      0 0 14px rgba(168, 40, 28, 0.4);
+    color: #C8362A;
+  }
 }
 .hero__submark {
   font-family: 'Yellowtail', cursive;
@@ -382,6 +460,11 @@ body.door-open .nav { display: none; }
   font-weight: 400;
   letter-spacing: 0;
   text-transform: none;
+  clip-path: inset(0 100% 0 0);
+  animation: handwrite 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+}
+@keyframes handwrite {
+  to { clip-path: inset(0 0 0 0); }
 }
 @media (max-width: 720px) {
   .hero__submark { font-size: 36px; margin-top: 6px; }
@@ -1120,6 +1203,11 @@ body.door-open .nav { display: none; }
 
 <!-- ===== HERO ===== -->
 <header class="hero" id="top">
+  <div class="hero__years" aria-hidden="true">
+    <div class="hero__years-inner">
+      1948 · 1955 · 1962 · 1969 · 1976 · 1983 · 1990 · 1997 · <em>2003</em> · 2010 · 2017 · <em>2026</em> · 1948 · 1955 · 1962 · 1969 · 1976 · 1983 · 1990 · 1997 · <em>2003</em> · 2010 · 2017 · <em>2026</em> ·&nbsp;
+    </div>
+  </div>
   <div class="hero__brand">
     <h1 class="hero__name">DANNY<span class="apos">'</span>S</h1>
     <p class="hero__submark">Automotive Repair</p>
@@ -1398,6 +1486,30 @@ body.door-open .nav { display: none; }
   }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
 
   document.querySelectorAll('.fade-up, .split-line').forEach(el => io.observe(el));
+
+  // ===== Hero: cursor-follow parallax tilt on DANNY's (desktop only) =====
+  const hoverable = window.matchMedia('(hover: hover)').matches;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (hoverable && !reduced) {
+    const hero = document.querySelector('.hero');
+    const name = document.querySelector('.hero__name');
+    if (hero && name) {
+      let frame;
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width - 0.5);
+        const y = ((e.clientY - rect.top) / rect.height - 0.5);
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(() => {
+          name.style.transform = `perspective(1400px) rotateX(${y * -2.4}deg) rotateY(${x * 3.6}deg) translateZ(0)`;
+        });
+      });
+      hero.addEventListener('mouseleave', () => {
+        cancelAnimationFrame(frame);
+        name.style.transform = '';
+      });
+    }
+  }
 
   // ===== Nav: hide on scroll down, reveal on scroll up =====
   const nav = document.getElementById('nav');

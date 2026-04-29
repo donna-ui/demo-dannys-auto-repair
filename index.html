@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Danny's Automotive Repair — On the corner of San Antonio since 2003.</title>
-<meta name="description" content="One man. One corner. Same answer since 2003. Honest auto repair in Pomona — engines, transmissions, brakes, A/C, electrical, alignment, ignition interlock. (909) 622-3785.">
+<title>Danny's Automotive Repair — On the corner of San Antonio for 22 years.</title>
+<meta name="description" content="Honest auto repair in Pomona. One man, one lift, twenty-two years on the corner of San Antonio. Engines, transmissions, brakes, A/C, electrical, alignment. (909) 622-3785.">
 <meta property="og:title" content="Danny's Automotive Repair — Pomona">
-<meta property="og:description" content="On the corner of San Antonio since 2003. The sign has been there since 1948. Same answer when you ask: is this honest?">
+<meta property="og:description" content="On the corner of San Antonio for 22 years. One man, one lift, one honest answer every time.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,14 +19,14 @@
   --bone: #F1ECDF;
   --bone-deep: #DDD6C4;
   --brick: #A8281C;
-  --brick-deep: #7A1812;
-  --turquoise: #5B7A78;
+  --brick-bright: #C8362A;
   --paper: #EDE4CD;
-  --rule: rgba(241, 236, 223, 0.18);
+  --rule: rgba(241, 236, 223, 0.16);
 
   --display: 'Anton', 'Arial Black', sans-serif;
   --serif: 'Fraunces', Georgia, serif;
   --mono: 'DM Mono', 'Courier New', monospace;
+  --script: 'Yellowtail', cursive;
 }
 
 /* ===== RESET ===== */
@@ -46,225 +46,9 @@ body {
   width: 100%;
   max-width: 100vw;
 }
-
 ::selection { background: var(--brick); color: var(--bone); }
-
 a { color: inherit; text-decoration: none; }
-
-/* ===== BAY DOOR — CLICK TO ENTER ===== */
-.door {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: #0A0807;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  transition: transform 1500ms cubic-bezier(0.7, 0, 0.3, 1);
-  will-change: transform;
-}
-.door.is-open {
-  transform: translateY(-105%);
-  pointer-events: none;
-}
-.door__panel {
-  position: absolute;
-  inset: 0;
-  background:
-    /* corrugation ribs */
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.025) 0px,
-      rgba(255,255,255,0.025) 1px,
-      transparent 1px,
-      transparent 6px,
-      rgba(0,0,0,0.45) 6px,
-      rgba(0,0,0,0.45) 7px,
-      transparent 7px,
-      transparent 32px
-    ),
-    /* horizontal panel divisions */
-    repeating-linear-gradient(
-      0deg,
-      transparent 0px,
-      transparent 22vh,
-      rgba(0,0,0,0.4) 22vh,
-      rgba(0,0,0,0.4) calc(22vh + 2px)
-    ),
-    /* base metal gradient */
-    linear-gradient(180deg, #15110F 0%, #1C1715 50%, #100C0A 100%);
-}
-.door__panel::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 50% 110%, rgba(168, 40, 28, 0.25) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% -10%, rgba(241, 236, 223, 0.06) 0%, transparent 60%);
-  pointer-events: none;
-}
-.door__panel::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(0deg, rgba(0,0,0,0.18) 0px, rgba(0,0,0,0.18) 1px, transparent 1px, transparent 3px);
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.door__top {
-  position: absolute;
-  top: 28px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: rgba(241, 236, 223, 0.5);
-  z-index: 2;
-}
-.door__top span { color: var(--brick); }
-
-.door__sign {
-  position: relative;
-  z-index: 3;
-  font-family: var(--display);
-  font-size: clamp(72px, 18vw, 280px);
-  line-height: 0.85;
-  letter-spacing: -0.025em;
-  color: var(--bone);
-  text-transform: none;
-  text-shadow:
-    0 0 0 transparent,
-    2px 2px 0 rgba(0,0,0,0.4),
-    0 30px 60px rgba(0,0,0,0.5);
-  filter: drop-shadow(0 0 1px rgba(241,236,223,0.05));
-  margin-bottom: 8px;
-  white-space: nowrap;
-}
-.door__sign .apos { color: var(--brick); }
-.door__sign-sub {
-  position: relative;
-  z-index: 3;
-  font-family: var(--mono);
-  font-size: clamp(11px, 1.2vw, 14px);
-  letter-spacing: 0.42em;
-  text-transform: uppercase;
-  color: rgba(241, 236, 223, 0.7);
-  margin-bottom: 64px;
-}
-.door__sign-sub span { color: var(--brick); }
-
-.door__chain {
-  position: relative;
-  z-index: 3;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-}
-.door__chain-line {
-  width: 2px;
-  height: 80px;
-  background: linear-gradient(180deg, rgba(241,236,223,0.6) 0%, rgba(241,236,223,0.95) 100%);
-  position: relative;
-  transition: height 250ms ease;
-}
-.door__chain-line::before,
-.door__chain-line::after {
-  content: '';
-  position: absolute;
-  left: -2px;
-  width: 6px;
-  height: 6px;
-  background: rgba(241,236,223,0.9);
-  border-radius: 50%;
-}
-.door__chain-line::before { top: 18px; }
-.door__chain-line::after { top: 38px; }
-.door__chain-handle {
-  width: 56px;
-  height: 24px;
-  background: linear-gradient(180deg, #DDD6C4 0%, #b3aa90 100%);
-  border-radius: 4px;
-  border: 1px solid rgba(0,0,0,0.4);
-  margin-top: -2px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.3);
-}
-.door__chain:hover .door__chain-line { height: 96px; }
-.door__chain:active .door__chain-line { height: 110px; }
-
-.door__cta {
-  position: relative;
-  z-index: 3;
-  margin-top: 20px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--bone);
-  border: 1px solid rgba(241,236,223,0.4);
-  padding: 12px 28px;
-  background: rgba(0,0,0,0.3);
-  cursor: pointer;
-  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
-}
-.door__chain:hover ~ .door__cta,
-.door__cta:hover { background: var(--brick); border-color: var(--brick); color: var(--bone); }
-
-.door__bottom {
-  position: absolute;
-  bottom: 24px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 32px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(241, 236, 223, 0.4);
-  z-index: 2;
-}
-
-.door__hint {
-  position: absolute;
-  z-index: 3;
-  bottom: 96px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: rgba(241, 236, 223, 0.4);
-  animation: doorHint 2.4s ease-in-out infinite;
-}
-@keyframes doorHint {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.9; }
-}
-
-@media (max-width: 720px) {
-  .door__sign { font-size: 80px; }
-  .door__sign-sub { font-size: 11px; letter-spacing: 0.28em; margin-bottom: 48px; }
-  .door__top { font-size: 9px; letter-spacing: 0.22em; padding: 0 16px; }
-  .door__bottom { padding: 0 18px; font-size: 9px; letter-spacing: 0.18em; }
-}
-
-/* lock body scroll while door is up */
-body.door-open { overflow: hidden; }
-body.door-open .nav { display: none; }
+img { max-width: 100%; display: block; }
 
 /* ===== NAV ===== */
 .nav {
@@ -274,7 +58,7 @@ body.door-open .nav { display: none; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 24px;
+  padding: 16px 28px;
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 0.08em;
@@ -300,18 +84,14 @@ body.door-open .nav { display: none; }
   color: var(--bone);
   display: inline-flex;
   align-items: baseline;
-  gap: 10px;
-  white-space: nowrap;
-  overflow: hidden;
+  gap: 12px;
 }
 .nav__mark::before {
   content: '';
-  width: 6px;
-  height: 6px;
+  width: 6px; height: 6px;
   background: var(--brick);
   border-radius: 50%;
   display: inline-block;
-  margin-right: 4px;
   flex-shrink: 0;
   transform: translateY(-3px);
 }
@@ -325,9 +105,9 @@ body.door-open .nav { display: none; }
 }
 .nav__cta {
   border: 1px solid var(--bone);
-  padding: 9px 16px;
+  padding: 9px 18px;
   font-size: 11px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   transition: background 200ms ease, color 200ms ease;
   flex-shrink: 0;
 }
@@ -342,111 +122,42 @@ body.door-open .nav { display: none; }
 
 /* ===== HERO ===== */
 .hero {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 92px 32px 96px;
+  padding: 120px 32px 140px;
   position: relative;
   overflow: hidden;
-  gap: 56px;
   isolation: isolate;
 }
-/* ambient atmospheric blobs — bigger, more visible */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: -20%;
-  z-index: 0;
-  background:
-    radial-gradient(ellipse 55% 45% at 18% 78%, rgba(168, 40, 28, 0.42) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 84% 18%, rgba(91, 122, 120, 0.32) 0%, transparent 60%),
-    radial-gradient(ellipse 35% 30% at 60% 50%, rgba(168, 40, 28, 0.14) 0%, transparent 70%);
-  filter: blur(28px);
-  animation: heroAmbient 14s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image: repeating-linear-gradient(0deg, rgba(241,236,223,0.022) 0px, rgba(241,236,223,0.022) 1px, transparent 1px, transparent 4px);
-  pointer-events: none;
-}
-@keyframes heroAmbient {
-  0% { transform: rotate(0deg) scale(1); opacity: 0.85; }
-  100% { transform: rotate(10deg) scale(1.12); opacity: 1; }
-}
 
-/* horizontal sweep beam — scanner light passes across hero on a loop */
-.hero__sweep {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  pointer-events: none;
-  overflow: hidden;
-}
-.hero__sweep::before {
-  content: '';
-  position: absolute;
-  top: -10%;
-  left: -30%;
-  width: 30%;
-  height: 120%;
-  background: linear-gradient(90deg, transparent 0%, rgba(168, 40, 28, 0) 30%, rgba(216, 72, 46, 0.22) 50%, rgba(168, 40, 28, 0) 70%, transparent 100%);
-  filter: blur(24px);
-  animation: sweepBeam 7.2s ease-in-out infinite;
-  transform: skewX(-12deg);
-}
-@keyframes sweepBeam {
-  0% { left: -40%; opacity: 0; }
-  10% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { left: 130%; opacity: 0; }
-}
-
-/* year reel — bigger, more visible, faster */
+/* SIGNATURE: year reel scrolling slowly behind the wordmark */
 .hero__years {
   position: absolute;
-  top: 42%;
-  left: 0;
-  right: 0;
+  top: 56%;
+  left: 0; right: 0;
   transform: translateY(-50%);
-  z-index: 1;
+  z-index: 0;
   overflow: hidden;
   white-space: nowrap;
   pointer-events: none;
   font-family: var(--mono);
-  font-size: clamp(56px, 9vw, 140px);
-  color: rgba(241, 236, 223, 0.16);
+  font-size: clamp(48px, 8vw, 130px);
+  color: rgba(241, 236, 223, 0.10);
   letter-spacing: 0.04em;
   font-weight: 500;
   line-height: 1;
   user-select: none;
-  mix-blend-mode: screen;
 }
 .hero__years-inner {
   display: inline-block;
-  animation: yearScroll 50s linear infinite;
+  animation: yearScroll 60s linear infinite;
   padding-left: 100vw;
 }
-.hero__years em { color: rgba(216, 72, 46, 0.6); font-style: normal; }
+.hero__years em { color: rgba(216, 72, 46, 0.45); font-style: normal; }
 @keyframes yearScroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
 
-.hero__brand {
-  position: sticky;
-  top: 76px;
-  z-index: 3;
-  align-self: flex-start;
-  perspective: 1200px;
-}
-.hero__sub { position: relative; z-index: 3; }
+.hero__brand { position: relative; z-index: 2; }
 .hero__name {
   font-family: var(--display);
   font-weight: 400;
@@ -455,174 +166,84 @@ body.door-open .nav { display: none; }
   letter-spacing: -0.025em;
   color: var(--bone);
   margin-left: -0.02em;
-  position: relative;
   white-space: nowrap;
 }
-.hero__name {
-  transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  will-change: transform;
-}
-.hero__name .apos {
-  color: var(--brick);
-  display: inline-block;
-  transform-origin: 50% 60%;
-  animation: aposPulse 2.4s ease-in-out infinite;
-  will-change: transform, text-shadow;
-}
-@keyframes aposPulse {
-  0%, 100% {
-    transform: translateY(-0.02em) scale(1);
-    text-shadow: 0 0 0 transparent;
-    color: var(--brick);
-  }
-  50% {
-    transform: translateY(-0.04em) scale(1.08);
-    text-shadow:
-      0 0 60px rgba(216, 72, 46, 0.85),
-      0 0 24px rgba(216, 72, 46, 0.6),
-      0 0 8px rgba(216, 72, 46, 0.5);
-    color: #E04A38;
-  }
-}
+.hero__name .apos { color: var(--brick); display: inline-block; transform: translateY(-0.02em); }
+
 .hero__submark {
-  font-family: 'Yellowtail', cursive;
+  font-family: var(--script);
   font-size: clamp(34px, 5.2vw, 84px);
   color: var(--brick);
   line-height: 1;
-  margin-top: 8px;
-  margin-left: 0.04em;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: none;
-  clip-path: inset(0 100% 0 0);
-  animation: handwrite 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+  margin-top: 6px;
+  margin-left: 0.06em;
 }
-@keyframes handwrite {
-  to { clip-path: inset(0 0 0 0); }
-}
-@media (max-width: 720px) {
-  .hero__submark { font-size: 36px; margin-top: 6px; }
-}
-.hero__sub {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  margin-top: 56px;
-  align-items: end;
+
+.hero__close {
+  position: relative;
+  z-index: 2;
+  margin-top: 88px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  flex-wrap: wrap;
   border-top: 1px solid var(--rule);
   padding-top: 28px;
 }
 .hero__lede {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(18px, 1.6vw, 26px);
+  font-size: clamp(18px, 1.5vw, 24px);
   line-height: 1.35;
-  max-width: 56ch;
+  max-width: 36ch;
 }
-.hero__lede em {
-  font-style: italic;
-  color: var(--brick);
+.hero__lede em { font-style: italic; color: var(--brick); }
+
+.hero__phone {
+  font-family: var(--display);
+  font-size: clamp(26px, 3.4vw, 56px);
+  line-height: 0.9;
+  letter-spacing: -0.012em;
+  color: var(--bone);
+  border-bottom: 4px solid var(--brick);
+  padding-bottom: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
-.hero__meta {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  align-items: flex-end;
-}
-.hero__meta span:first-child { color: var(--brick); }
+.hero__phone:hover { color: var(--brick-bright); }
 
 @media (max-width: 720px) {
-  .hero { padding: 72px 18px 60px; gap: 36px; }
-  .hero__brand { position: static; }
-  .hero__name { font-size: clamp(72px, 22vw, 200px); letter-spacing: -0.02em; }
-  .hero__sub { grid-template-columns: 1fr; gap: 24px; padding-top: 22px; }
-  .hero__meta { text-align: left; align-items: flex-start; }
+  .hero { padding: 84px 18px 80px; }
+  .hero__name { font-size: clamp(72px, 22vw, 200px); }
+  .hero__close { margin-top: 56px; gap: 22px; padding-top: 22px; flex-direction: column; align-items: flex-start; }
   .hero__lede { font-size: 17px; }
-}
-
-/* ===== SECTION — PAPER MODIFIER (visual break: cream ground, ink type) ===== */
-.sec--paper {
-  background: var(--paper);
-  color: var(--ink);
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-  position: relative;
-  overflow: hidden;
-}
-.sec--paper::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(0deg, rgba(10,8,7,0.022) 0, rgba(10,8,7,0.022) 1px, transparent 1px, transparent 4px),
-    repeating-linear-gradient(90deg, rgba(10,8,7,0.018) 0, rgba(10,8,7,0.018) 1px, transparent 1px, transparent 6px);
-  pointer-events: none;
-  z-index: 0;
-}
-.sec--paper > * { position: relative; z-index: 1; }
-.sec--paper .sec__num { color: var(--brick); }
-.sec--paper .sec__title { color: var(--ink); }
-.sec--paper .sec__title em { color: var(--brick); }
-.sec--paper .services { border-top-color: var(--ink); }
-.sec--paper .service { border-bottom-color: rgba(10, 8, 7, 0.22); }
-.sec--paper .service__num { color: var(--brick); }
-.sec--paper .service__name { color: var(--ink); }
-.sec--paper .service__detail { color: rgba(10, 8, 7, 0.55); opacity: 1; }
-.sec--paper .service:nth-child(odd) { border-right-color: rgba(10, 8, 7, 0.22); }
-.sec--paper .service::before { background: var(--brick); }
-.sec--paper .service:hover { color: var(--ink); }
-
-/* paper-section corner stamp — adds a real catalog-page feel */
-.sec--paper .paper-stamp {
-  position: absolute;
-  top: 32px;
-  right: 32px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--brick);
-  border: 1.5px solid var(--brick);
-  padding: 8px 14px;
-  transform: rotate(2deg);
-  z-index: 2;
-  line-height: 1.5;
-}
-.sec--paper .paper-stamp strong { display: block; font-size: 12px; letter-spacing: 0.06em; font-family: var(--display); font-weight: 400; }
-
-@media (max-width: 720px) {
-  .sec--paper .paper-stamp { top: 18px; right: 18px; font-size: 9px; padding: 6px 10px; }
+  .hero__phone { font-size: 32px; }
 }
 
 /* ===== SECTION FRAME ===== */
 .sec {
-  padding: 140px 32px;
-  border-top: 1px solid var(--rule);
+  padding: 200px 32px;
   position: relative;
+  border-top: 1px solid var(--rule);
 }
 .sec__num {
   font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   color: var(--brick);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   display: inline-block;
 }
 .sec__title {
   font-family: var(--display);
   font-weight: 400;
-  font-size: clamp(40px, 9vw, 168px);
-  line-height: 0.85;
+  font-size: clamp(40px, 8.4vw, 156px);
+  line-height: 0.88;
   letter-spacing: -0.018em;
   color: var(--bone);
   text-transform: uppercase;
-  max-width: 18ch;
-  overflow-wrap: break-word;
+  max-width: 22ch;
 }
 .sec__title em {
   font-family: var(--serif);
@@ -634,170 +255,12 @@ body.door-open .nav { display: none; }
 }
 
 @media (max-width: 720px) {
-  .sec { padding: 72px 18px; }
-  .sec__title { font-size: 38px; line-height: 0.95; max-width: 100%; }
-  .sec__title em { display: inline; }
+  .sec { padding: 110px 18px; }
+  .sec__title { font-size: 36px; line-height: 0.95; max-width: 100%; }
 }
 
-/* ===== SECTION 01 — TWO DATES ===== */
-.dates {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0;
-  margin-top: 80px;
-  border-top: 1px solid var(--bone);
-}
-.dates__cell {
-  padding: 32px 24px 32px 0;
-  border-right: 1px solid var(--rule);
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.dates__cell:last-child { border-right: none; }
-.dates__year {
-  font-family: var(--display);
-  font-size: clamp(64px, 9vw, 144px);
-  line-height: 1;
-  color: var(--bone);
-  letter-spacing: -0.02em;
-}
-.dates__year.is-now { color: var(--brick); }
-.dates__label {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--bone-deep);
-  opacity: 0.7;
-}
-.dates__body {
-  font-family: var(--serif);
-  font-size: clamp(16px, 1.1vw, 19px);
-  line-height: 1.5;
-  max-width: 32ch;
-  color: var(--bone);
-}
-
-@media (max-width: 880px) {
-  .dates { grid-template-columns: 1fr; }
-  .dates__cell { border-right: none; border-bottom: 1px solid var(--rule); padding: 28px 0; }
-  .dates__cell:last-child { border-bottom: none; }
-}
-
-/* ===== SECTION 02 — ONE MAN ===== */
-.oneman {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 80px;
-  margin-top: 60px;
-  align-items: start;
-}
-.oneman__body p {
-  font-family: var(--serif);
-  font-size: clamp(18px, 1.4vw, 23px);
-  line-height: 1.5;
-  margin-bottom: 24px;
-  max-width: 48ch;
-}
-.oneman__body p:first-child::first-letter {
-  font-family: var(--display);
-  font-size: 4.4em;
-  line-height: 0.8;
-  float: left;
-  margin: 0.06em 0.08em -0.1em -0.02em;
-  color: var(--brick);
-}
-.oneman__pull {
-  font-family: var(--display);
-  font-size: clamp(36px, 4vw, 64px);
-  line-height: 0.92;
-  color: var(--bone);
-  letter-spacing: -0.01em;
-  border-left: 4px solid var(--brick);
-  padding-left: 28px;
-  text-transform: uppercase;
-  position: sticky;
-  top: 120px;
-}
-.oneman__pull span { color: var(--brick); }
-
-@media (max-width: 880px) {
-  .oneman { grid-template-columns: 1fr; gap: 40px; }
-  .oneman__pull { position: static; font-size: 36px; padding-left: 18px; }
-}
-
-/* ===== ATMOSPHERIC BREAK — IMAGE PLATE ===== */
-.plate {
-  position: relative;
-  width: 100%;
-  height: 78vh;
-  min-height: 480px;
-  overflow: hidden;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-}
-.plate img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 40%;
-  filter: grayscale(100%) contrast(1.08) brightness(0.7);
-  transform: scale(1.05);
-}
-.plate::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(10,8,7,0.55) 0%, rgba(10,8,7,0.25) 35%, rgba(10,8,7,0.55) 100%),
-    linear-gradient(135deg, rgba(168,40,28,0.18), rgba(91,122,120,0.12));
-  z-index: 1;
-  mix-blend-mode: multiply;
-}
-.plate::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(0deg, rgba(10,8,7,0.2) 0px, rgba(10,8,7,0.2) 1px, transparent 1px, transparent 3px);
-  z-index: 2;
-  opacity: 0.4;
-  pointer-events: none;
-}
-.plate__caption {
-  position: absolute;
-  z-index: 3;
-  left: 32px;
-  bottom: 32px;
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--bone);
-  line-height: 1.7;
-  max-width: 32ch;
-}
-.plate__caption strong { color: var(--brick); display: block; font-size: 18px; letter-spacing: 0.04em; margin-bottom: 8px; font-weight: 500; }
-.plate__caption .rule {
-  width: 40px;
-  height: 2px;
-  background: var(--brick);
-  margin-top: 14px;
-}
-
-@media (max-width: 720px) {
-  .plate { height: 60vh; min-height: 360px; }
-  .plate__caption { left: 20px; bottom: 20px; font-size: 11px; }
-}
-
-/* ===== SECTION 03 — THE INVOICE (SIGNATURE MOMENT) ===== */
-.invoice-wrap {
-  margin-top: 60px;
-  position: relative;
-}
+/* ===== SECTION 01 — THE INVOICE (signature reveal) ===== */
+.invoice-wrap { margin-top: 80px; }
 .invoice {
   background: var(--paper);
   color: var(--ink);
@@ -808,9 +271,8 @@ body.door-open .nav { display: none; }
   max-width: min(720px, 100%);
   margin: 0 auto;
   position: relative;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.35), 0 8px 0 #c4ba9c;
-  background-image:
-    repeating-linear-gradient(0deg, transparent 0, transparent 28px, rgba(168, 40, 28, 0.04) 28px, rgba(168, 40, 28, 0.04) 29px);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.4), 0 8px 0 #c4ba9c;
+  background-image: repeating-linear-gradient(0deg, transparent 0, transparent 28px, rgba(168,40,28,0.04) 28px, rgba(168,40,28,0.04) 29px);
   transform: rotate(-0.6deg);
 }
 .invoice::before {
@@ -840,7 +302,6 @@ body.door-open .nav { display: none; }
   font-size: 10px;
   letter-spacing: 0.16em;
   margin-top: 4px;
-  font-weight: 400;
   text-transform: uppercase;
 }
 .invoice__no {
@@ -869,7 +330,6 @@ body.door-open .nav { display: none; }
 .invoice__row.note {
   text-transform: none;
   letter-spacing: 0;
-  font-style: normal;
   font-family: var(--serif);
   font-size: 14px;
   border-bottom: none;
@@ -900,24 +360,8 @@ body.door-open .nav { display: none; }
 .invoice__total.is-in { opacity: 1; transform: translateY(0); }
 .invoice__total strong { color: var(--brick); }
 
-.invoice__stamp {
-  position: absolute;
-  right: 32px;
-  bottom: 24px;
-  transform: rotate(-12deg);
-  border: 3px solid var(--brick);
-  color: var(--brick);
-  font-family: var(--display);
-  font-size: 22px;
-  letter-spacing: 0.06em;
-  padding: 8px 16px;
-  opacity: 0;
-  transition: opacity 600ms ease 1000ms, transform 800ms ease 1000ms;
-}
-.invoice__stamp.is-in { opacity: 0.92; transform: rotate(-8deg) scale(1); }
-
 .invoice-after {
-  margin: 80px auto 0;
+  margin: 96px auto 0;
   max-width: 920px;
   text-align: center;
 }
@@ -932,7 +376,7 @@ body.door-open .nav { display: none; }
 }
 .invoice-after__line2 {
   font-family: var(--display);
-  font-size: clamp(48px, 8vw, 144px);
+  font-size: clamp(48px, 8vw, 140px);
   line-height: 0.92;
   letter-spacing: -0.01em;
   color: var(--bone);
@@ -943,17 +387,6 @@ body.door-open .nav { display: none; }
   text-decoration-thickness: 6px;
   opacity: 0.6;
 }
-.invoice-after__line3 {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(18px, 1.6vw, 26px);
-  margin-top: 28px;
-  color: var(--bone);
-  max-width: 50ch;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.4;
-}
 
 @media (max-width: 720px) {
   .invoice { padding: 24px 18px 32px; transform: rotate(-0.3deg); }
@@ -963,143 +396,190 @@ body.door-open .nav { display: none; }
   .invoice__row { font-size: 10.5px; gap: 10px; }
   .invoice__row.note { font-size: 13px; }
   .invoice__total { font-size: 20px; }
-  .invoice__stamp { font-size: 14px; right: 12px; bottom: 12px; padding: 6px 10px; }
 }
 
-/* ===== SECTION 04 — REVIEWS ===== */
-.reviews {
-  margin-top: 60px;
+/* ===== MARQUEE STRIP — between invoice and reviews ===== */
+.strip {
+  background: var(--brick);
+  color: var(--bone);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 14px 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
 }
+.strip__inner {
+  display: inline-block;
+  animation: stripScroll 36s linear infinite;
+  padding-left: 100vw;
+}
+.strip__inner span { margin: 0 22px; opacity: 0.55; }
+@keyframes stripScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ===== SECTION 02 — REVIEWS (alternating alignment) ===== */
+.reviews { margin-top: 96px; display: flex; flex-direction: column; gap: 96px; }
 .review {
-  padding: 52px 0;
-  border-bottom: 1px solid var(--rule);
-  display: grid;
-  grid-template-columns: 1fr 220px;
-  gap: 48px;
-  align-items: end;
-}
-.review:last-child { border-bottom: none; }
-.review__quote {
   font-family: var(--display);
-  font-size: clamp(28px, 6vw, 96px);
+  font-weight: 400;
+  font-size: clamp(28px, 5vw, 84px);
   line-height: 1;
   letter-spacing: -0.018em;
   color: var(--bone);
   text-transform: uppercase;
-  overflow-wrap: break-word;
+  max-width: 22ch;
 }
-.review__quote em {
-  color: var(--brick);
-  font-style: normal;
-}
-.review__attr {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--bone-deep);
-  text-align: right;
-  line-height: 1.7;
-  opacity: 0.8;
-}
-.review__attr strong { color: var(--brick); display: block; margin-bottom: 4px; font-weight: 500; }
+.review em { color: var(--brick); font-style: normal; }
+.review--left { text-align: left; align-self: flex-start; }
+.review--right { text-align: right; align-self: flex-end; max-width: 18ch; }
 
 @media (max-width: 720px) {
-  .review { grid-template-columns: 1fr; gap: 14px; padding: 36px 0; }
-  .review__quote { font-size: 28px; }
-  .review__attr { text-align: left; }
+  .reviews { gap: 56px; margin-top: 56px; }
+  .review--right { text-align: left; align-self: flex-start; max-width: 22ch; }
+  .review { font-size: 28px; }
 }
 
-/* ===== SECTION 05 — SERVICES ===== */
+/* ===== FULL-BLEED PHOTO PLATE — between reviews and services ===== */
+.plate {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  min-height: 360px;
+  overflow: hidden;
+}
+.plate img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  filter: grayscale(100%) contrast(1.05) brightness(0.7);
+  transform: scale(1.04);
+}
+.plate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10,8,7,0.55) 0%, rgba(10,8,7,0.2) 35%, rgba(10,8,7,0.55) 100%),
+    linear-gradient(135deg, rgba(168,40,28,0.18), rgba(91,122,120,0.12));
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+/* ===== SECTION 03 — SERVICES (PAPER) ===== */
+.sec--paper {
+  background: var(--paper);
+  color: var(--ink);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+.sec--paper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(10,8,7,0.022) 0, rgba(10,8,7,0.022) 1px, transparent 1px, transparent 4px),
+    repeating-linear-gradient(90deg, rgba(10,8,7,0.018) 0, rgba(10,8,7,0.018) 1px, transparent 1px, transparent 6px);
+  pointer-events: none;
+  z-index: 0;
+}
+.sec--paper > * { position: relative; z-index: 1; }
+.sec--paper .sec__num { color: var(--brick); }
+.sec--paper .sec__title { color: var(--ink); }
+.sec--paper .sec__title em { color: var(--brick); }
+
+.paper-stamp {
+  position: absolute;
+  top: 36px;
+  right: 32px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brick);
+  border: 1.5px solid var(--brick);
+  padding: 8px 14px;
+  transform: rotate(2deg);
+  z-index: 2;
+  line-height: 1.5;
+}
+.paper-stamp strong { display: block; font-size: 12px; letter-spacing: 0.06em; font-family: var(--display); font-weight: 400; }
+
 .services {
-  margin-top: 60px;
+  margin-top: 96px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0;
-  border-top: 1px solid var(--bone);
+  list-style: none;
+  border-top: 2px solid var(--ink);
 }
-.service {
-  padding: 28px 0;
-  border-bottom: 1px solid var(--rule);
-  padding-right: 32px;
-  display: flex;
-  align-items: baseline;
-  gap: 24px;
-  position: relative;
-  cursor: default;
-  transition: padding-left 350ms cubic-bezier(0.2, 0.8, 0.2, 1), color 300ms ease;
-}
-.service:nth-child(odd) { padding-right: 32px; border-right: 1px solid var(--rule); padding-left: 0; }
-.service:nth-child(even) { padding-left: 32px; padding-right: 0; }
-.service:hover { padding-left: 18px; }
-.service:nth-child(even):hover { padding-left: 50px; }
-.service::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--brick);
-  transition: width 350ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  transform: translateY(-50%);
-}
-.service:nth-child(even)::before { left: 32px; }
-.service:hover::before { width: 12px; }
-.service__num {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  color: var(--brick);
-  flex-shrink: 0;
-}
-.service__name {
+.services li {
   font-family: var(--display);
-  font-size: clamp(28px, 3.4vw, 52px);
+  font-size: clamp(26px, 4vw, 60px);
   line-height: 1;
   letter-spacing: -0.005em;
-  color: var(--bone);
+  color: var(--ink);
   text-transform: uppercase;
-  flex: 1;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(10,8,7,0.22);
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  transition: padding-left 350ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.service__detail {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 14px;
-  color: var(--bone-deep);
-  opacity: 0.7;
-  text-align: right;
-  flex-shrink: 0;
+.services li:nth-child(odd) { border-right: 1px solid rgba(10,8,7,0.22); padding-right: 32px; }
+.services li:nth-child(even) { padding-left: 32px; }
+.services li:hover { padding-left: 14px; }
+.services li:nth-child(even):hover { padding-left: 46px; }
+.services li::before {
+  content: counter(svc, decimal-leading-zero);
+  counter-increment: svc;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--brick);
+  font-weight: 500;
 }
+.services { counter-reset: svc; }
 
 @media (max-width: 720px) {
-  .services { grid-template-columns: 1fr; }
-  .service, .service:nth-child(odd), .service:nth-child(even) {
+  .services { grid-template-columns: 1fr; margin-top: 56px; }
+  .services li, .services li:nth-child(odd), .services li:nth-child(even) {
     padding: 22px 0;
     border-right: none;
   }
-  .service__name { font-size: 32px; }
-  .service__detail { display: none; }
+  .services li { font-size: 28px; }
+  .paper-stamp { top: 18px; right: 18px; font-size: 9px; padding: 6px 10px; }
 }
 
-/* ===== SECTION 06 — THE CORNER ===== */
-.corner {
-  margin-top: 60px;
+/* ===== SECTION 04 — FIND DANNY (closing) ===== */
+.close-grid {
+  margin-top: 96px;
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1.4fr 1fr;
   gap: 80px;
+  align-items: end;
 }
-.corner__addr {
+.close__addr {
   font-family: var(--display);
-  font-size: clamp(40px, 6.4vw, 110px);
+  font-size: clamp(40px, 6.4vw, 116px);
   line-height: 0.92;
   letter-spacing: -0.018em;
   color: var(--bone);
   text-transform: uppercase;
-  overflow-wrap: break-word;
 }
-.corner__addr span { color: var(--brick); }
-.corner__hours {
+.close__addr span { color: var(--brick); }
+.close__hours {
   font-family: var(--mono);
   font-size: 13px;
   letter-spacing: 0.08em;
@@ -1107,105 +587,64 @@ body.door-open .nav { display: none; }
   line-height: 2;
   border-top: 1px solid var(--bone);
   padding-top: 24px;
-  align-self: end;
 }
-.corner__hours strong { color: var(--brick); font-weight: 500; }
-.corner__hours .row {
+.close__hours strong { color: var(--brick); font-weight: 500; }
+.close__hours .row {
   display: grid;
   grid-template-columns: 1fr auto;
   border-bottom: 1px solid var(--rule);
   padding: 6px 0;
 }
-.corner__directions {
+
+.close__phone-wrap {
+  margin-top: 140px;
+  text-align: center;
+  padding-top: 80px;
+  border-top: 1px solid var(--rule);
+}
+.close__label {
   font-family: var(--mono);
   font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-top: 24px;
-  color: var(--brick);
-  border-bottom: 1px solid var(--brick);
-  padding-bottom: 4px;
-  display: inline-block;
-}
-
-@media (max-width: 880px) {
-  .corner { grid-template-columns: 1fr; gap: 40px; }
-}
-
-/* ===== SECTION 07 — THE PHONE (CLOSING) ===== */
-.phone {
-  padding: 180px 32px 60px;
-  border-top: 1px solid var(--rule);
-  text-align: center;
-  position: relative;
-}
-.phone__label {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--brick);
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
-.phone__number {
+.close__phone {
   font-family: var(--display);
-  font-size: clamp(40px, 14vw, 280px);
+  font-size: clamp(48px, 14vw, 280px);
   line-height: 0.88;
   letter-spacing: -0.022em;
   color: var(--bone);
   display: inline-block;
-  position: relative;
   white-space: nowrap;
   max-width: 100%;
 }
-.phone__number::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -18px;
-  width: 0;
-  height: 6px;
-  background: var(--brick);
-  transform: translateX(-50%);
-  transition: width 1200ms cubic-bezier(0.2, 0.8, 0.2, 1) 200ms;
-}
-.phone__number.is-in::after { width: 60%; }
-.phone__sub {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(18px, 1.6vw, 26px);
-  margin-top: 56px;
-  color: var(--bone);
-  max-width: 50ch;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.4;
-}
-.phone__cta {
+.close__phone:hover { color: var(--brick-bright); }
+.close__directions {
   display: inline-block;
-  margin-top: 48px;
+  margin-top: 56px;
   font-family: var(--mono);
-  font-size: 13px;
-  letter-spacing: 0.16em;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   border: 1px solid var(--bone);
-  padding: 18px 36px;
-  transition: background 200ms ease, color 200ms ease;
+  padding: 16px 32px;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
 }
-.phone__cta:hover { background: var(--brick); border-color: var(--brick); color: var(--bone); }
+.close__directions:hover { background: var(--brick); border-color: var(--brick); color: var(--bone); }
 
 @media (max-width: 720px) {
-  .phone { padding: 80px 18px 36px; }
-  .phone__number { font-size: 38px; letter-spacing: -0.015em; }
-  .phone__sub { font-size: 16px; margin-top: 32px; }
-  .phone__cta { margin-top: 28px; padding: 14px 24px; font-size: 12px; }
-  .phone__label { margin-bottom: 22px; font-size: 11px; }
+  .close-grid { grid-template-columns: 1fr; gap: 36px; margin-top: 48px; }
+  .close__phone-wrap { margin-top: 80px; padding-top: 48px; }
+  .close__phone { font-size: 38px; }
+  .close__directions { margin-top: 32px; padding: 13px 22px; }
 }
 
 /* ===== FOOTER ===== */
 .foot {
   border-top: 1px solid var(--rule);
-  padding: 48px 32px;
+  padding: 36px 32px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 32px;
@@ -1219,7 +658,7 @@ body.door-open .nav { display: none; }
 }
 .foot__brand {
   font-family: var(--display);
-  font-size: 18px;
+  font-size: 16px;
   color: var(--bone);
   letter-spacing: 0.04em;
   opacity: 1;
@@ -1238,258 +677,137 @@ body.door-open .nav { display: none; }
 .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 700ms ease, transform 700ms ease; }
 .fade-up.is-in { opacity: 1; transform: translateY(0); }
 
-.split-line {
-  display: inline-block;
-  overflow: hidden;
-}
-.split-line span {
-  display: inline-block;
-  transform: translateY(110%);
-  transition: transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.split-line.is-in span { transform: translateY(0); }
-.split-line.delay-1 span { transition-delay: 80ms; }
-.split-line.delay-2 span { transition-delay: 160ms; }
-.split-line.delay-3 span { transition-delay: 240ms; }
-
 /* ===== REDUCED MOTION ===== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
-  .split-line span { transform: none; }
   .fade-up { opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
+  .hero__years-inner, .strip__inner { animation: none; }
 }
 </style>
 </head>
 <body>
 
-<!-- ===== BAY DOOR ===== -->
-<div class="door" id="bay-door" role="dialog" aria-label="Welcome — pull the chain to enter Danny's">
-  <div class="door__panel"></div>
-  <div class="door__top">594 S SAN ANTONIO AVE · POMONA CA · <span>EST. 1948</span></div>
-  <h1 class="door__sign">DANNY<span class="apos">'</span>S</h1>
-  <p class="door__sign-sub">AUTOMOTIVE REPAIR · <span>ON THE CORNER SINCE 2003</span></p>
-  <button class="door__chain" id="open-bay" aria-label="Pull chain to open the bay door">
-    <span class="door__chain-line"></span>
-    <span class="door__chain-handle"></span>
-  </button>
-  <span class="door__hint">↑ PULL THE CHAIN</span>
-  <button class="door__cta" id="open-bay-cta">OPEN THE BAY</button>
-  <div class="door__bottom">
-    <span>(909) 622-3785</span>
-    <span>OPEN MON–SAT</span>
-  </div>
-</div>
-
 <nav class="nav is-top" id="nav">
-  <a href="#top" class="nav__mark">Danny's<span class="meta">Pomona · Est. 1948</span></a>
+  <a href="#top" class="nav__mark">Danny's<span class="meta">Pomona · 22 yrs</span></a>
   <a href="tel:+19096223785" class="nav__cta">Call shop</a>
 </nav>
 
 <!-- ===== HERO ===== -->
 <header class="hero" id="top">
-  <div class="hero__sweep" aria-hidden="true"></div>
   <div class="hero__years" aria-hidden="true">
     <div class="hero__years-inner">
-      1948 · 1955 · 1962 · 1969 · 1976 · 1983 · 1990 · 1997 · <em>2003</em> · 2010 · 2017 · <em>2026</em> · 1948 · 1955 · 1962 · 1969 · 1976 · 1983 · 1990 · 1997 · <em>2003</em> · 2010 · 2017 · <em>2026</em> ·&nbsp;
+      <em>2003</em> · 2007 · 2011 · 2015 · 2019 · 2023 · <em>2026</em> · <em>2003</em> · 2007 · 2011 · 2015 · 2019 · 2023 · <em>2026</em> ·&nbsp;
     </div>
   </div>
+
   <div class="hero__brand">
     <h1 class="hero__name">DANNY<span class="apos">'</span>S</h1>
     <p class="hero__submark">Automotive Repair</p>
   </div>
-  <div class="hero__sub">
+
+  <div class="hero__close">
     <p class="hero__lede fade-up">
-      On the corner of San&nbsp;Antonio since 2003. The sign on the door has been there since 1948. <em>Twenty-three years of one man, one lift, and the same honest answer every time.</em>
+      On the corner of San Antonio for twenty-two years. <em>One man, one lift, one honest answer every time.</em>
     </p>
-    <div class="hero__meta fade-up">
-      <span>594 S SAN ANTONIO AVE</span>
-      <span>POMONA · CALIFORNIA</span>
-      <span>91766</span>
-    </div>
+    <a href="tel:+19096223785" class="hero__phone fade-up">(909) 622-3785</a>
   </div>
 </header>
 
-<!-- ===== 01 · TWO DATES ===== -->
-<section class="sec">
-  <span class="sec__num fade-up">01 — THE CORNER</span>
-  <h2 class="sec__title fade-up">One corner.<br><em>Two dates that matter.</em></h2>
-  <div class="dates">
-    <div class="dates__cell fade-up">
-      <span class="dates__label">YEAR ONE</span>
-      <div class="dates__year">1948</div>
-      <p class="dates__body">The building goes up. Pomona is still a citrus town. The sign reads <strong>DANNY'S</strong>. It will outlast everything across the street.</p>
-    </div>
-    <div class="dates__cell fade-up">
-      <span class="dates__label">THE HANDOFF</span>
-      <div class="dates__year">2003</div>
-      <p class="dates__body">Danny takes the keys. He keeps the sign. He keeps the lift. He answers the phone himself. He still does.</p>
-    </div>
-    <div class="dates__cell fade-up">
-      <span class="dates__label">RIGHT NOW</span>
-      <div class="dates__year is-now">2026</div>
-      <p class="dates__body">Same corner. Same sign. Same man. Twenty-three years of one answer to the only question that matters at a body shop.</p>
+<!-- ===== 01 · THE INVOICE (SIGNATURE) ===== -->
+<section class="sec" id="invoice-sec">
+  <span class="sec__num fade-up">01 — THE PROOF</span>
+  <h2 class="sec__title fade-up">Why he still has<br><em>customers from 2011.</em></h2>
+  <div class="invoice-wrap">
+    <article class="invoice" id="invoice">
+      <header class="invoice__head">
+        <div class="invoice__brand">DANNY'S<small>Automotive Repair · Pomona</small></div>
+        <div class="invoice__no">INVOICE<strong>NO. 11-0418</strong>18 APR 2024</div>
+      </header>
+      <div class="invoice__row" data-row="1"><span>1996 HONDA CIVIC · OWNER M. RODRIGUEZ</span><strong></strong></div>
+      <div class="invoice__row" data-row="2"><span>TIMING BELT — REPLACEMENT</span><strong>$310.00</strong></div>
+      <div class="invoice__row" data-row="3"><span>WATER PUMP — INSPECTED, OK</span><strong>$0.00</strong></div>
+      <div class="invoice__row" data-row="4"><span>OIL CHANGE — COURTESY</span><strong>$0.00</strong></div>
+      <div class="invoice__row" data-row="5"><span>PARTS WARRANTY — 12 MO / 12K MI</span><strong>—</strong></div>
+      <div class="invoice__total" data-row="6"><span>TOTAL</span><strong>$310.00</strong></div>
+      <p class="invoice__row note" data-row="7">Saw the A/C hose weeping a little. Not urgent — wait on it. Check back in 30 days when the heat picks up.</p>
+    </article>
+    <div class="invoice-after">
+      <p class="invoice-after__line1 fade-up">— What the chain shop quoted her —</p>
+      <p class="invoice-after__line2 fade-up"><strike>$1,840</strike></p>
     </div>
   </div>
 </section>
 
-<!-- ===== 02 · ONE MAN ===== -->
+<!-- ===== MARQUEE STRIP ===== -->
+<div class="strip" aria-hidden="true">
+  <div class="strip__inner">
+    NO UPSELLS<span>·</span>22 YEARS ON THE CORNER<span>·</span>NO UPSELLS<span>·</span>HE ANSWERS THE PHONE HIMSELF<span>·</span>NO UPSELLS<span>·</span>22 YEARS ON THE CORNER<span>·</span>NO UPSELLS<span>·</span>HE ANSWERS THE PHONE HIMSELF<span>·</span>NO UPSELLS<span>·</span>22 YEARS ON THE CORNER<span>·</span>NO UPSELLS<span>·</span>HE ANSWERS THE PHONE HIMSELF<span>·</span>
+  </div>
+</div>
+
+<!-- ===== 02 · REVIEWS ===== -->
 <section class="sec">
-  <span class="sec__num fade-up">02 — THE SHOP</span>
-  <h2 class="sec__title fade-up">One man.<br><em>Every car.</em></h2>
-  <div class="oneman">
-    <div class="oneman__body fade-up">
-      <p>There is no front desk. There is no service writer. There is no one to upsell you while Danny is out back doing the actual work. There is Danny, the lift, and the car you brought in.</p>
-      <p>You'll get the diagnosis from the man who fixes it — because there isn't anyone else to ask. You'll hear the price from the man who sets it. You'll get the keys back from the man who turned the wrench.</p>
-      <p>Twenty-three years on this corner means people stop in just to ask him a question. He answers it. Even if it costs him the job.</p>
-    </div>
-    <blockquote class="oneman__pull fade-up">
-      No team.<br>No dispatcher.<br>No "we'll call you back."<br><span>Just Danny.</span>
-    </blockquote>
+  <span class="sec__num fade-up">02 — WORD OF MOUTH</span>
+  <h2 class="sec__title fade-up">Word of mouth.<br><em>The real review.</em></h2>
+  <div class="reviews">
+    <p class="review review--left fade-up">"He was <em>the sweetest.</em> Walked me through everything without trying to sell me anything else."</p>
+    <p class="review review--right fade-up">"<em>Honest. Affordable. Reliable.</em> Fifteen years and I'm not going anywhere else."</p>
+    <p class="review review--left fade-up">"Fast service. <em>No upsells.</em> Told me what was wrong and what could wait."</p>
   </div>
 </section>
 
-<!-- ===== ATMOSPHERIC BREAK ===== -->
+<!-- ===== FULL-BLEED PHOTO PLATE ===== -->
 <div class="plate" aria-hidden="true">
   <img
     src="https://images.pexels.com/photos/8985714/pexels-photo-8985714.jpeg?auto=compress&cs=tinysrgb&w=2000"
     alt=""
     loading="lazy"
     decoding="async">
-  <div class="plate__caption">
-    <strong>The lift's been here longer than your kids.</strong>
-    Every car that comes off it goes back home with the same answer.
-    <div class="rule"></div>
-  </div>
 </div>
 
-<!-- ===== 03 · THE INVOICE (SIGNATURE) ===== -->
-<section class="sec" id="invoice-sec">
-  <span class="sec__num fade-up">03 — WHY HE STILL HAS CUSTOMERS FROM 2011</span>
-  <h2 class="sec__title fade-up">The quote from<br>the chain shop. <em>Read it.</em></h2>
-  <div class="invoice-wrap">
-    <article class="invoice" id="invoice">
-      <header class="invoice__head">
-        <div class="invoice__brand">
-          DANNY'S
-          <small>Automotive Repair · Pomona</small>
-        </div>
-        <div class="invoice__no">
-          INVOICE
-          <strong>NO. 11-0418</strong>
-          18 APR 2024
-        </div>
-      </header>
-
-      <div class="invoice__row" data-row="1">
-        <span>1996 HONDA CIVIC · OWNER M. RODRIGUEZ</span>
-        <strong></strong>
-      </div>
-      <div class="invoice__row" data-row="2">
-        <span>TIMING BELT — REPLACEMENT</span>
-        <strong>$310.00</strong>
-      </div>
-      <div class="invoice__row" data-row="3">
-        <span>WATER PUMP — INSPECTED, OK</span>
-        <strong>$0.00</strong>
-      </div>
-      <div class="invoice__row" data-row="4">
-        <span>OIL CHANGE — COURTESY</span>
-        <strong>$0.00</strong>
-      </div>
-      <div class="invoice__row" data-row="5">
-        <span>LABOR — INCLUDED</span>
-        <strong>—</strong>
-      </div>
-      <div class="invoice__row" data-row="6">
-        <span>PARTS WARRANTY — 12 MO / 12K MI</span>
-        <strong>—</strong>
-      </div>
-      <div class="invoice__total" data-row="7">
-        <span>TOTAL</span>
-        <strong>$310.00</strong>
-      </div>
-      <p class="invoice__row note" data-row="8">
-        Saw the A/C hose weeping a little. Not urgent — wait on it. Check back in 30 days when the heat picks up.
-      </p>
-
-      <span class="invoice__stamp" data-row="9">PAID · THANKS</span>
-    </article>
-
-    <div class="invoice-after">
-      <p class="invoice-after__line1 fade-up">— What the chain shop quoted her —</p>
-      <p class="invoice-after__line2 fade-up"><strike>$1,840</strike></p>
-      <p class="invoice-after__line3 fade-up">Maria has been bringing her Civic to Danny since 2011. Her son's truck. Her nephew's Camry. Now her grandson's first car. <em>One corner. One man. One answer.</em></p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 04 · REVIEWS ===== -->
-<section class="sec">
-  <span class="sec__num fade-up">04 — WHAT CUSTOMERS ACTUALLY SAY</span>
-  <h2 class="sec__title fade-up">Word of mouth.<br><em>The real review.</em></h2>
-  <div class="reviews">
-    <article class="review">
-      <p class="review__quote fade-up">"He was <em>the sweetest.</em> Walked me through everything without trying to sell me anything else."</p>
-      <div class="review__attr fade-up"><strong>BIRDEYE · 5★</strong>FIRST-TIME CUSTOMER<br>2024</div>
-    </article>
-    <article class="review">
-      <p class="review__quote fade-up">"<em>Honest. Affordable. Reliable.</em> I've been a customer for fifteen years and I'm not going anywhere else."</p>
-      <div class="review__attr fade-up"><strong>BIRDEYE · 5★</strong>15-YEAR CUSTOMER<br>2023</div>
-    </article>
-    <article class="review">
-      <p class="review__quote fade-up">"Fast service. <em>No upsells.</em> He told me what was wrong and what could wait. That's it."</p>
-      <div class="review__attr fade-up"><strong>BIRDEYE · 5★</strong>RETURNING CUSTOMER<br>2024</div>
-    </article>
-  </div>
-</section>
-
-<!-- ===== 05 · SERVICES ===== -->
+<!-- ===== 03 · SERVICES (PAPER) ===== -->
 <section class="sec sec--paper">
-  <div class="paper-stamp">PARTS &amp; LABOR<strong>EST. 1948</strong></div>
-  <span class="sec__num fade-up">05 — WHAT HE FIXES</span>
+  <div class="paper-stamp">PARTS &amp; LABOR<strong>SINCE 2003</strong></div>
+  <span class="sec__num fade-up">03 — WHAT HE FIXES</span>
   <h2 class="sec__title fade-up">If it has<br>four wheels.<br><em>He'll look at it.</em></h2>
-  <div class="services">
-    <div class="service fade-up"><span class="service__num">5.01</span><span class="service__name">Engines</span><span class="service__detail">diagnosis to overhaul</span></div>
-    <div class="service fade-up"><span class="service__num">5.02</span><span class="service__name">Transmissions</span><span class="service__detail">repair &amp; rebuild</span></div>
-    <div class="service fade-up"><span class="service__num">5.03</span><span class="service__name">Brakes</span><span class="service__detail">pads, rotors, lines</span></div>
-    <div class="service fade-up"><span class="service__num">5.04</span><span class="service__name">Suspension</span><span class="service__detail">front &amp; rear</span></div>
-    <div class="service fade-up"><span class="service__num">5.05</span><span class="service__name">Electrical</span><span class="service__detail">starting, charging, lighting</span></div>
-    <div class="service fade-up"><span class="service__num">5.06</span><span class="service__name">Air Conditioning</span><span class="service__detail">recharge &amp; repair</span></div>
-    <div class="service fade-up"><span class="service__num">5.07</span><span class="service__name">Alignment</span><span class="service__detail">four-wheel</span></div>
-    <div class="service fade-up"><span class="service__num">5.08</span><span class="service__name">Tune-Ups</span><span class="service__detail">factory schedule or by ear</span></div>
-    <div class="service fade-up"><span class="service__num">5.09</span><span class="service__name">Towing</span><span class="service__detail">when you're stuck</span></div>
-    <div class="service fade-up"><span class="service__num">5.10</span><span class="service__name">Ignition Interlock</span><span class="service__detail">LifeSafer authorized installer</span></div>
-  </div>
+  <ul class="services">
+    <li class="fade-up">Engines</li>
+    <li class="fade-up">Transmissions</li>
+    <li class="fade-up">Brakes</li>
+    <li class="fade-up">Suspension</li>
+    <li class="fade-up">Electrical</li>
+    <li class="fade-up">Air Conditioning</li>
+    <li class="fade-up">Alignment</li>
+    <li class="fade-up">Tune-Ups</li>
+    <li class="fade-up">Towing</li>
+    <li class="fade-up">Ignition Interlock</li>
+  </ul>
 </section>
 
-<!-- ===== 06 · THE CORNER ===== -->
+<!-- ===== 04 · FIND DANNY (CLOSING) ===== -->
 <section class="sec">
-  <span class="sec__num fade-up">06 — FIND THE SIGN</span>
+  <span class="sec__num fade-up">04 — FIND THE CORNER</span>
   <h2 class="sec__title fade-up">Pull up to<br>the corner.<br><em>You can't miss it.</em></h2>
-  <div class="corner">
-    <div>
-      <h3 class="corner__addr fade-up">594 S<br><span>San Antonio</span><br>Ave.</h3>
-      <a href="https://www.google.com/maps/place/594+S+San+Antonio+Ave,+Pomona,+CA+91766" target="_blank" rel="noopener" class="corner__directions fade-up">→ Open in Google Maps</a>
-    </div>
-    <div class="corner__hours fade-up">
+  <div class="close-grid">
+    <h3 class="close__addr fade-up">594 S<br><span>San Antonio</span><br>Ave.</h3>
+    <div class="close__hours fade-up">
       <div class="row"><span>Monday</span><strong>8:00a — 6:00p</strong></div>
       <div class="row"><span>Tue — Friday</span><strong>7:45a — 6:00p</strong></div>
       <div class="row"><span>Saturday</span><strong>8:00a — 5:00p</strong></div>
       <div class="row"><span>Sunday</span><span style="opacity:0.5">— closed —</span></div>
     </div>
   </div>
-</section>
 
-<!-- ===== 07 · THE PHONE (CLOSING) ===== -->
-<section class="phone">
-  <p class="phone__label fade-up">SAME LINE. SAME MAN. SINCE 2003.</p>
-  <a href="tel:+19096223785" class="phone__number fade-up" id="phone-num">(909) 622-3785</a>
-  <p class="phone__sub fade-up"><em>Pick up the phone. Danny will. He always does.</em></p>
-  <a href="tel:+19096223785" class="phone__cta fade-up">Call the shop</a>
+  <div class="close__phone-wrap">
+    <p class="close__label fade-up">Same line. Same man. Since 2003.</p>
+    <a href="tel:+19096223785" class="close__phone fade-up">(909) 622-3785</a>
+    <br>
+    <a href="https://www.google.com/maps/place/594+S+San+Antonio+Ave,+Pomona,+CA+91766" target="_blank" rel="noopener" class="close__directions fade-up">→ Open in Google Maps</a>
+  </div>
 </section>
 
 <!-- ===== FOOTER ===== -->
@@ -1517,18 +835,14 @@ body.door-open .nav { display: none; }
     "postalCode": "91766",
     "addressCountry": "US"
   },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 34.05225,
-    "longitude": -117.75234
-  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 34.05225, "longitude": -117.75234 },
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "08:00", "closes": "18:00" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"], "opens": "07:45", "closes": "18:00" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "17:00" }
   ],
   "founder": "Danny",
-  "foundingDate": "1948",
+  "foundingDate": "2003",
   "areaServed": [
     { "@type": "City", "name": "Pomona" },
     { "@type": "City", "name": "Diamond Bar" },
@@ -1537,35 +851,13 @@ body.door-open .nav { display: none; }
     { "@type": "City", "name": "Claremont" },
     { "@type": "City", "name": "Montclair" }
   ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.7",
-    "reviewCount": "18"
-  }
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.7", "reviewCount": "18" }
 }
 </script>
 
 <script>
 (function () {
-  // ===== Bay door (click to enter) =====
-  document.body.classList.add('door-open');
-  const door = document.getElementById('bay-door');
-  const openBay = () => {
-    if (!door || door.classList.contains('is-open')) return;
-    door.classList.add('is-open');
-    document.body.classList.remove('door-open');
-    setTimeout(() => { door.style.display = 'none'; }, 1600);
-  };
-  document.getElementById('open-bay')?.addEventListener('click', openBay);
-  document.getElementById('open-bay-cta')?.addEventListener('click', openBay);
-
-  // honor reduced-motion: skip the cinematic reveal
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.body.classList.remove('door-open');
-    if (door) { door.style.display = 'none'; }
-  }
-
-  // ===== Reveal on scroll =====
+  // Fade-up reveal
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -1574,34 +866,9 @@ body.door-open .nav { display: none; }
       }
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 
-  document.querySelectorAll('.fade-up, .split-line').forEach(el => io.observe(el));
-
-  // ===== Hero: cursor-follow parallax tilt on DANNY's (desktop only) =====
-  const hoverable = window.matchMedia('(hover: hover)').matches;
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (hoverable && !reduced) {
-    const hero = document.querySelector('.hero');
-    const name = document.querySelector('.hero__name');
-    if (hero && name) {
-      let frame;
-      hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width - 0.5);
-        const y = ((e.clientY - rect.top) / rect.height - 0.5);
-        cancelAnimationFrame(frame);
-        frame = requestAnimationFrame(() => {
-          name.style.transform = `perspective(1200px) rotateX(${y * -6}deg) rotateY(${x * 9}deg) translateZ(0)`;
-        });
-      });
-      hero.addEventListener('mouseleave', () => {
-        cancelAnimationFrame(frame);
-        name.style.transform = '';
-      });
-    }
-  }
-
-  // ===== Nav: hide on scroll down, reveal on scroll up =====
+  // Nav: hide on scroll down, reveal on scroll up
   const nav = document.getElementById('nav');
   if (nav) {
     let lastY = window.scrollY;
@@ -1609,60 +876,38 @@ body.door-open .nav { display: none; }
     const update = () => {
       const y = window.scrollY;
       const delta = y - lastY;
-      // top of page → no background, no hide
       if (y < 60) {
         nav.classList.add('is-top');
         nav.classList.remove('is-hidden');
       } else {
         nav.classList.remove('is-top');
-        // scrolling DOWN past threshold → hide
-        if (delta > 6 && y > 240) {
-          nav.classList.add('is-hidden');
-        } else if (delta < -6) {
-          nav.classList.remove('is-hidden');
-        }
+        if (delta > 6 && y > 240) nav.classList.add('is-hidden');
+        else if (delta < -6) nav.classList.remove('is-hidden');
       }
       lastY = y;
       ticking = false;
     };
     window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(update);
-        ticking = true;
-      }
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
     }, { passive: true });
   }
 
-  // ===== Phone underline trigger =====
-  const phoneNum = document.getElementById('phone-num');
-  if (phoneNum) {
-    const ip = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) phoneNum.classList.add('is-in'); });
-    }, { threshold: 0.4 });
-    ip.observe(phoneNum);
-  }
-
-  // ===== Invoice progressive reveal (scroll-driven) =====
+  // Invoice progressive reveal on scroll
   const invoice = document.getElementById('invoice');
   if (invoice) {
     const rows = Array.from(invoice.querySelectorAll('[data-row]'))
       .sort((a, b) => Number(a.dataset.row) - Number(b.dataset.row));
     const total = rows.length;
-
     const onScroll = () => {
       const rect = invoice.getBoundingClientRect();
       const vh = window.innerHeight;
-      // Progress: 0 when invoice top hits middle of screen, 1 when bottom passes
       const start = vh * 0.85;
       const end = vh * 0.15;
       const span = start - end;
       const prog = Math.max(0, Math.min(1, (start - rect.top) / span));
       const reveal = Math.floor(prog * total * 1.05);
-      rows.forEach((row, i) => {
-        if (i < reveal) row.classList.add('is-in');
-      });
+      rows.forEach((row, i) => { if (i < reveal) row.classList.add('is-in'); });
     };
-
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
